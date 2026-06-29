@@ -126,4 +126,29 @@ if (Test-Path $outFull) {
     Write-Host "  [안내] $outRel 가 보이지 않습니다. Claude 세션에서 생성이 끝났는지 확인하세요." -ForegroundColor Yellow
 }
 Write-Host "=================================================="
+
+# === 사이트 발행 (GitHub Pages) ===
+if (Test-Path $outFull) {
+    Write-Host ""
+    $pub = Read-Host "  방금 만든 리포트를 사이트에 발행할까요? (Y/N)"
+    if ($pub -match '^[Yy]') {
+        Write-Host "  발행 중..." -ForegroundColor Cyan
+        git -C $workDir add -A
+        if (git -C $workDir status --porcelain) {
+            git -C $workDir commit -m "리포트 발행: $baseName" | Out-Null
+        }
+        git -C $workDir push origin main
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host ""
+            Write-Host "  [발행 완료] https://withbrothersjsa.github.io/media-report/" -ForegroundColor Green
+            Write-Host "  (사이트 반영까지 1~2분 정도 걸립니다)"
+        } else {
+            Write-Host "  [발행 실패] GitHub Desktop을 열어 Commit 후 Push 해주세요." -ForegroundColor Yellow
+        }
+    } else {
+        Write-Host "  발행은 건너뜁니다. (나중에 GitHub Desktop에서 Push 가능)" -ForegroundColor Yellow
+    }
+    Write-Host "=================================================="
+}
+
 Read-Host "  엔터를 누르면 창을 닫습니다"
