@@ -49,6 +49,12 @@
     .section-head .count { font-size: 12px; font-weight: 700; color: var(--muted); background: #ececf3; border-radius: 20px; padding: 2px 9px; }
     .section-head .hint { margin-left: auto; font-size: 12px; color: var(--muted); }
 
+    /* 섹션별 '이번주 이슈 요약' 박스 */
+    .section-summary { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--c1); border-radius: 12px; padding: 14px 18px 15px; margin-bottom: 16px; }
+    .section-summary .ss-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .03em; color: #fff; padding: 3px 11px; border-radius: 20px; margin-bottom: 9px; }
+    .section-summary p { font-size: 13.5px; line-height: 1.75; color: #45455a; }
+    .section-summary b { color: var(--primary); font-weight: 700; }
+
     .rail { display: flex; gap: 16px; overflow-x: auto; padding: 4px 4px 16px; scroll-snap-type: x mandatory; }
     .rail::-webkit-scrollbar { height: 8px; }
     .rail::-webkit-scrollbar-track { background: #ececf3; border-radius: 4px; }
@@ -106,6 +112,10 @@
   <!-- ① 화장품/뷰티 -->
   <section class="section">
     <div class="section-head"><span class="dot" style="background:var(--c1)"></span><h2>💄 화장품 / 뷰티</h2><span class="count">7</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c1)">
+      <span class="ss-label" style="background:var(--c1)">이번주 이슈 요약</span>
+      <p>이번 주 뷰티 업계는 화장을 피부 관리의 연장으로 보는 <b>'스킨케어링 메이크업'과 글로우(생기) 색조</b>, 멜라토닌·GABA 등 웰니스 성분이 트렌드 키워드로 떠올랐고, 성분을 투명하게 공개하는 '데이터 보증' 브랜드가 약진했다. 동시에 식약처가 화장품 표시·효능광고 규제를 <b>제품 유형별 차등·책임판매업자 한정</b> 방향으로 재편하면서 라벨·상세페이지 점검 필요성이 커졌다. 올영세일 방한 외국인이 3년 새 11배 늘며 K뷰티가 인바운드 관광 콘텐츠로 부상한 점도 눈에 띈다. <b>맘앤트윈스·리아네이처</b>는 스킨케어 인퓨즈드 색조와 이너뷰티 라인에 임상·성분 수치를 결합해 트렌드와 신뢰를 동시에 잡을 시점이다.</p>
+    </div>
     <div class="rail">
       <article class="card">
         <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20251251/art_17661216615488_4a0146.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">트렌드 발표</span></div>
@@ -176,6 +186,10 @@
   <!-- ② 아이웨어 + 패션잡화 -->
   <section class="section">
     <div class="section-head"><span class="dot" style="background:var(--c2)"></span><h2>🕶️ 아이웨어 + 레인부츠·패션잡화</h2><span class="count">7</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c2)">
+      <span class="ss-label" style="background:var(--c2)">이번주 이슈 요약</span>
+      <p>장마가 시즌 특수를 끌어올리며 <b>무신사 레인웨어 검색량이 전년 대비 약 2배</b>로 뛰었고, 레인부츠가 단순 우천용품을 넘어 미들·숏 기장의 '패션 부츠'로 소비되고 있다. 노스페이스·헌터·락피쉬 등이 방수·통기 기능성 신제품과 우산 라인까지 확대하며 경쟁이 가열됐고, 젠틀몬스터·크록스는 팝업·한정판으로 화제성을 만들었다. 여름 선글라스는 <b>메가 오버사이즈·마스크형·원색 렌즈</b>가 키워드로 부상했다. <b>리끌로우</b>는 미들·숏 레인부츠와 오버사이즈·원색 선글라스를 주력에 배치하고, 장마 키워드 기획전과 우산 번들로 객단가를 끌어올릴 기회다.</p>
+    </div>
     <div class="rail">
       <article class="card">
         <div class="card-img" style="background-image:url('https://www.wkorea.com/wp_data/w/2026/04/style_69d45e7356dc2-1920x1080.jpg?x=1080&y=963&ver=1.1.81'), var(--g2)"><span class="card-tag" style="background:var(--c2)">트렌드</span></div>
@@ -246,6 +260,10 @@
   <!-- ③ 뷰티 디바이스 -->
   <section class="section">
     <div class="section-head"><span class="dot" style="background:var(--c3)"></span><h2>🔬 뷰티 디바이스</h2><span class="count">6</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c3)">
+      <span class="ss-label" style="background:var(--c3)">이번주 이슈 요약</span>
+      <p>홈뷰티 디바이스 시장은 <b>2035년 760억 달러 규모</b>로 전망되며 고성장 국면에 진입했고, 에이피알이 1분기 <b>해외 매출 비중 89%·분기 최대 실적</b>으로 글로벌 성장성을 입증했다. 메디큐브는 차세대 '부스터 프로 X2'로 세대 교체에 나섰고, LG(프라엘)·아모레 등 대형사와 동국제약·파마리서치 등 제약·바이오까지 가세하며 '효능 신뢰' 경쟁이 심화됐다. 시장은 커지지만 임상 근거 없이는 살아남기 어려운 구도다. <b>더리아</b>는 'AI 맞춤 분석 + 가성비 프리미엄'이라는 명확한 USP 하나에 집중하고, 초기부터 글로벌 채널과 전용 화장품 번들을 설계해 차별화해야 한다.</p>
+    </div>
     <div class="rail">
       <article class="card">
         <div class="card-img" style="background-image:url('https://cdn.ebn.co.kr/news/thumbnail/202601/1696295_716098_1715_v150.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">시장 동향</span></div>
@@ -307,6 +325,10 @@
   <!-- ④ 미디어커머스 공통 -->
   <section class="section">
     <div class="section-head"><span class="dot" style="background:var(--c4)"></span><h2>📱 미디어커머스 공통</h2><span class="count">7</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c4)">
+      <span class="ss-label" style="background:var(--c4)">이번주 이슈 요약</span>
+      <p><b>7월 틱톡숍 한국 상륙</b>과 '코리아-US 크로스보더'로 숏폼→라이브→결제를 잇는 발견형 커머스가 본격화되고, 국내 라이브커머스는 10조 시장을 향해 <b>네이버(49.1%)</b>가 주도하고 있다. 숏폼이 재미 콘텐츠를 넘어 '검색-구매' 퍼널의 입구로 자리 잡았고, 인플루언서는 협찬형에서 <b>성과(어필리에이트·CPS) 기반 커머스 파트너</b>로 이동 중이다. 쿠팡의 상품 매칭(브랜드·GTIN·옵션) 의무화 등 플랫폼 정책 변화와 생성형 AI 광고 실험도 빨라졌다. 자사 4개 브랜드는 네이버 쇼핑라이브를 메인으로 두고 틱톡숍을 신규 채널로 병행하며, 상품 정보 정비와 성과형 크리에이터 협업을 동시에 추진할 시점이다.</p>
+    </div>
     <div class="rail">
       <article class="card">
         <div class="card-img" style="background-image:url('https://cdn.aimarketingnews.io/news/photo/202508/3737437_259_2325.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼</span></div>
