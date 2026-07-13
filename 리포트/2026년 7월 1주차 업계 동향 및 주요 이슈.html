@@ -69,21 +69,33 @@
     }
     .card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(45,45,107,.14); }
 
-    .card-img { position: relative; height: 156px; background-size: cover; background-position: center; background-repeat: no-repeat; }
-    .card-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.45) 100%); }
-    .card-tag { position: absolute; top: 12px; left: 12px; z-index: 2; color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+    /* 이미지: 카드 상단을 크게 차지하고, 제목을 이미지 위에 얹는다 */
+    .card-img {
+      position: relative; height: 200px; background-size: cover; background-position: center; background-repeat: no-repeat;
+      display: flex; align-items: flex-end;
+    }
+    /* 밝은 기사 사진에서도 흰 제목이 읽히도록 하단을 어둡게 */
+    .card-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.1) 40%, rgba(0,0,0,.85) 100%); }
+    .card-tag { position: absolute; top: 12px; right: 12px; z-index: 2; color: #fff; font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
 
-    .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
-    .card-title { font-size: 15px; font-weight: 700; line-height: 1.4; color: var(--primary); margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-title {
+      position: relative; z-index: 2; padding: 0 16px 15px;
+      font-size: 17px; font-weight: 800; line-height: 1.32; color: #fff; letter-spacing: -.02em;
+      text-shadow: 0 2px 10px rgba(0,0,0,.45);
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    .card-body { padding: 14px 16px 0; display: flex; flex-direction: column; flex: 1; }
     .card-summary { font-size: 13px; color: #56566a; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .card-impl { margin-top: auto; background: #fbf2f7; border-radius: 8px; padding: 9px 11px; font-size: 12px; color: #7a2a52; line-height: 1.45; }
     .card-impl b { color: var(--accent); }
-    .card-link { margin-top: 10px; font-size: 11.5px; }
-    .card-link a { color: var(--muted); text-decoration: none; }
-    .card-link a:hover { color: var(--accent); }
+
+    .card-foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 13px; margin-top: 12px; border-top: 1px solid #f0f0f5; }
+    .card-foot a { font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .card-date { font-size: 12px; color: #b3b3c2; font-variant-numeric: tabular-nums; }
     /* 카드 전체를 클릭 영역으로 확장 (이미지 포함 어디든 클릭 시 기사로 이동) */
-    .card-link a::after { content: ""; position: absolute; inset: 0; z-index: 2; }
-    .card:hover .card-title { color: var(--accent); }
+    .card-foot a::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+    .card:hover .card-title { color: #ffd9e6; }
 
     footer { text-align: center; padding: 22px; font-size: 12px; color: var(--muted); }
   </style>
@@ -118,67 +130,60 @@
     </div>
     <div class="rail">
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20260727/art_17830545966322_a5c526.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">원료 트렌드</span></div>
+        <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20260727/art_17830545966322_a5c526.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">원료 트렌드</span><h3 class="card-title">인코스메틱스 코리아 2026 개막 — 다중 PDRN·엑소좀·롱제비티 총출동</h3></div>
         <div class="card-body">
-          <p class="card-title">인코스메틱스 코리아 2026 개막 — 다중 PDRN·엑소좀·롱제비티 총출동</p>
           <p class="card-summary">7월 1~3일 코엑스에 원료·임상기관 약 350개사 집결. 연어·비건 등 다중 유래 PDRN, 펩타이드, 엑소좀, 발효, '롱제비티(피부 수명)' 소재가 격전을 벌였다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 맘앤트윈스·리아네이처 신제품에 PDRN·롱제비티 성분 스토리를 USP로 선점.</div>
-          <p class="card-link"><a href="https://www.cosmorning.com/news/article.html?no=53090" target="_blank">▶ 코스모닝</a></p>
+          <div class="card-impl"><b>시사점</b> 맘앤트윈스·리아네이처 신제품에 PDRN이나 롱제비티 성분을 먼저 넣어볼 만하다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.cosmorning.com/news/article.html?no=53090" target="_blank">코스모닝</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260626/art_17822929930007_704bae.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">신제품</span></div>
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260626/art_17822929930007_704bae.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">신제품</span><h3 class="card-title">코스모코스 비프루브 '마린 선케어 2종' 출시 — 피부온도 7.9℃↓</h3></div>
         <div class="card-body">
-          <p class="card-title">코스모코스 비프루브 '마린 선케어 2종' 출시 — 피부온도 7.9℃↓</p>
           <p class="card-summary">자외선 차단에 '피부 온도 케어'를 결합한 쿨링 선크림·워터풀 선스틱. 인체시험서 사용 직후 피부온도 7.9℃ 저하 확인, 전국 다이소·온라인 판매.</p>
-          <div class="card-impl"><b>💡 시사점</b> 여름 선케어는 '차단+쿨링·진정' 복합 기능과 체감 수치를 전면에 배치.</div>
-          <p class="card-link"><a href="https://www.cosinkorea.com/news/article.html?no=57724" target="_blank">▶ 코스인코리아</a></p>
+          <div class="card-impl"><b>시사점</b> 선케어는 차단만으로 부족하다. 쿨링·진정 기능과 체감 온도를 앞세우는 편이 낫다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=57724" target="_blank">코스인코리아</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.thebk.co.kr/news/photo/202603/308144_78843_1214.png'), var(--g1)"><span class="card-tag" style="background:var(--c1)">소비 트렌드</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.thebk.co.kr/news/photo/202603/308144_78843_1214.png'), var(--g1)"><span class="card-tag" style="background:var(--c1)">소비 트렌드</span><h3 class="card-title">여름 선케어 '하이브리드'가 대세 — 차단+스킨케어·메이크업 결합</h3></div>
         <div class="card-body">
-          <p class="card-title">여름 선케어 '하이브리드'가 대세 — 차단+스킨케어·메이크업 결합</p>
           <p class="card-summary">단순 차단을 넘어 미백·톤업·광채·장벽케어를 더한 하이브리드 선케어가 주류로. '마일드·무기자차·수분'과 골프·아웃도어 등 상황별 포맷이 확산.</p>
-          <div class="card-impl"><b>💡 시사점</b> 선케어 라인에 스킨케어 기능·상황별 네이밍을 붙여 세분화 공략.</div>
-          <p class="card-link"><a href="https://www.thebk.co.kr/news/articleView.html?idxno=308144" target="_blank">▶ 뷰티경제</a></p>
+          <div class="card-impl"><b>시사점</b> 선케어에 스킨케어 기능을 얹고, 골프·아웃도어처럼 쓰는 상황별로 나눠 내놓는다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.thebk.co.kr/news/articleView.html?idxno=308144" target="_blank">뷰티경제</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260520/art_17786578052604_51ecd6.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">유통 동향</span></div>
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260520/art_17786578052604_51ecd6.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">유통 동향</span><h3 class="card-title">K뷰티, '올다무' 넘어 프리미엄 채널로 확장 — 백화점·면세점·얼타</h3></div>
         <div class="card-body">
-          <p class="card-title">K뷰티, '올다무' 넘어 프리미엄 채널로 확장 — 백화점·면세점·얼타</p>
           <p class="card-summary">인바운드 회복으로 유통 3사 호실적. K뷰티가 올리브영·다이소·무신사를 넘어 백화점·면세점과 미국 얼타·세포라 오프라인 매대로 확장 중.</p>
-          <div class="card-impl"><b>💡 시사점</b> 채널 믹스를 가성비몰+프리미엄 오프라인으로 이원화해 브랜드 격 상승.</div>
-          <p class="card-link"><a href="https://www.cosinkorea.com/news/article.html?no=57438" target="_blank">▶ 코스인코리아</a></p>
+          <div class="card-impl"><b>시사점</b> 가성비 온라인몰에만 머물지 말고 백화점·면세점 입점도 함께 노려야 한다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=57438" target="_blank">코스인코리아</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.plastics.kr/news/thumbnail/202605/1757_2702_3514_v150.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">규제 이슈</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.plastics.kr/news/thumbnail/202605/1757_2702_3514_v150.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">규제 이슈</span><h3 class="card-title">EU, 2026 화장품 규제 대개편 — 7/31 향료 성분 표시 의무화</h3></div>
         <div class="card-body">
-          <p class="card-title">EU, 2026 화장품 규제 대개편 — 7/31 향료 성분 표시 의무화</p>
           <p class="card-summary">EU가 신제품에 대해 7월 31일부터 향료(알레르겐) 성분 표시를 의무화. K뷰티는 처방·라벨링·원료 데이터 관리 체계 전면 재정비가 불가피.</p>
-          <div class="card-impl"><b>💡 시사점</b> 수출 라인 성분표·라벨을 EU 신규 기준에 맞춰 선제 점검·전환.</div>
-          <p class="card-link"><a href="http://www.plastics.kr/news/articleView.html?idxno=1757" target="_blank">▶ 플라넷뉴스</a></p>
+          <div class="card-impl"><b>시사점</b> EU로 나가는 제품의 성분표와 라벨을 7월 31일 시행 전에 미리 점검해야 한다.</div>
         </div>
+        <p class="card-foot"><a href="http://www.plastics.kr/news/articleView.html?idxno=1757" target="_blank">플라넷뉴스</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260625/art_17815133887154_b887f2.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">R&D 트렌드</span></div>
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260625/art_17815133887154_b887f2.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">R&D 트렌드</span><h3 class="card-title">코스메틱저널코리아 134호 — '혁신형·롱제비티' R&D 조명</h3></div>
         <div class="card-body">
-          <p class="card-title">코스메틱저널코리아 134호 — '혁신형·롱제비티' R&D 조명</p>
           <p class="card-summary">CJK 6월호가 피부 수명(롱제비티)·마이크로바이옴·바이오 소재 등 '혁신형 화장품' R&D 흐름을 조명. 독자 성분·신카테고리 선점 경쟁이 부각됐다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 근거 있는 독자 성분·기능성 스토리를 제품 차별화 포인트로 가공.</div>
-          <p class="card-link"><a href="https://www.cosinkorea.com/news/article.html?no=57652" target="_blank">▶ 코스인코리아</a></p>
+          <div class="card-impl"><b>시사점</b> 자사만의 성분을 내세우려면 임상 근거부터 갖춰야 설득력이 생긴다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=57652" target="_blank">코스인코리아</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.jangup.com/news/thumbnail/202512/97688_69415_180_v150.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">시장 전망</span></div>
+        <div class="card-img" style="background-image:url('https://www.jangup.com/news/thumbnail/202512/97688_69415_180_v150.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">시장 전망</span><h3 class="card-title">'K-뷰티 3.0' 본격화 — 기술 기반 스킨케어 솔루션·수출 125억달러</h3></div>
         <div class="card-body">
-          <p class="card-title">'K-뷰티 3.0' 본격화 — 기술 기반 스킨케어 솔루션·수출 125억달러</p>
           <p class="card-summary">K뷰티가 색조·바디·헤어·이너뷰티·디바이스로 카테고리를 넓히는 'K뷰티 3.0'에 진입. 기술·데이터 기반 스킨케어 솔루션이 성장 축으로 부상.</p>
-          <div class="card-impl"><b>💡 시사점</b> 스킨케어 편중을 벗어나 색조·이너뷰티·디바이스로 포트폴리오 확장 검토.</div>
-          <p class="card-link"><a href="https://www.jangup.com/news/articleView.html?idxno=97688" target="_blank">▶ 장업신문</a></p>
+          <div class="card-impl"><b>시사점</b> 스킨케어에만 쏠린 구성을 색조·이너뷰티·디바이스로 넓혀볼 필요가 있다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.jangup.com/news/articleView.html?idxno=97688" target="_blank">장업신문</a></p>
       </article>
     </div>
   </section>
@@ -192,58 +197,52 @@
     </div>
     <div class="rail">
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.apparelnews.co.kr/upfiles/manage/202604/ae29a178e5679dafbea68523be363042.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">신제품</span></div>
+        <div class="card-img" style="background-image:url('https://www.apparelnews.co.kr/upfiles/manage/202604/ae29a178e5679dafbea68523be363042.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">신제품</span><h3 class="card-title">카린, 2026 SS 메인 '로엔' 선글라스 출시 — 헵번 뿔테 재해석</h3></div>
         <div class="card-body">
-          <p class="card-title">카린, 2026 SS 메인 '로엔' 선글라스 출시 — 헵번 뿔테 재해석</p>
           <p class="card-summary">카린이 SS 대표작 '로엔'(R·S·B) 선글라스 출시. 영화 '로마의 휴일' 오드리 헵번의 클래식 뿔테를 현대적으로 재해석한 3종 시리즈로 구성.</p>
-          <div class="card-impl"><b>💡 시사점</b> 리끌로우도 '레트로 아이콘 재해석' 스토리로 시즌 대표 모델을 서사화.</div>
-          <p class="card-link"><a href="https://www.apparelnews.co.kr/news/news_view/?idx=224329" target="_blank">▶ 어패럴뉴스</a></p>
+          <div class="card-impl"><b>시사점</b> 리끌로우도 과거 인기 모델을 다시 꺼내 시즌 대표 선글라스로 밀어볼 만하다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.apparelnews.co.kr/news/news_view/?idx=224329" target="_blank">어패럴뉴스</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.fashionbiz.co.kr/images/articleImg/mainImg/1766708080888-collage.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">신제품</span></div>
+        <div class="card-img" style="background-image:url('https://www.fashionbiz.co.kr/images/articleImg/mainImg/1766708080888-collage.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">신제품</span><h3 class="card-title">프로젝트프로덕트, 2026 메인 '네오 노마드' 선글라스 론칭</h3></div>
         <div class="card-body">
-          <p class="card-title">프로젝트프로덕트, 2026 메인 '네오 노마드' 선글라스 론칭</p>
           <p class="card-summary">프로젝트프로덕트가 2026 메인 컬렉션 '네오 노마드' 선글라스 라인을 공식 론칭. 시공간을 넘나드는 여정을 담은 디자인 철학으로 라인업을 구성했다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 컬렉션에 콘셉트·세계관을 입혀 잡화를 '브랜드 서사'로 판매하는 흐름 참고.</div>
-          <p class="card-link"><a href="https://fashionbiz.co.kr/article/222510" target="_blank">▶ 패션비즈</a></p>
+          <div class="card-impl"><b>시사점</b> 잡화도 컬렉션에 이야기를 붙여 파는 흐름이다. 낱개 제품으로만 팔지 않는다.</div>
         </div>
+        <p class="card-foot"><a href="https://fashionbiz.co.kr/article/222510" target="_blank">패션비즈</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.elle.co.kr/resources/online/thumbnail/hf/2026/05/07/bc8a6071-8ff7-428c-bd91-c58c1a23d35c.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">트렌드</span></div>
+        <div class="card-img" style="background-image:url('https://www.elle.co.kr/resources/online/thumbnail/hf/2026/05/07/bc8a6071-8ff7-428c-bd91-c58c1a23d35c.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">트렌드</span><h3 class="card-title">2026 여름 선글라스 트렌드 — 오버사이즈·커브드 플랫탑·90s 금속테</h3></div>
         <div class="card-body">
-          <p class="card-title">2026 여름 선글라스 트렌드 — 오버사이즈·커브드 플랫탑·90s 금속테</p>
           <p class="card-summary">극단적 오버사이즈 프레임의 귀환, 곡선을 더한 커브드 플랫탑, 1990년대 미니멀 금속테가 올여름 키워드. 볼드 vs 클래식으로 취향이 양분됐다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 리끌로우 여름 주력에 오버사이즈·플랫탑·메탈 라인 배치 + 착용샷 숏폼.</div>
-          <p class="card-link"><a href="https://www.elle.co.kr/article/1902161" target="_blank">▶ 엘르</a></p>
+          <div class="card-impl"><b>시사점</b> 리끌로우 여름 주력을 오버사이즈·플랫탑·메탈로 잡고 착용샷 숏폼을 붙인다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.elle.co.kr/article/1902161" target="_blank">엘르</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://img.etoday.co.kr/pto_db/2025/06/20250616152459_2186163_708_500.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">수요 급증</span></div>
+        <div class="card-img" style="background-image:url('https://img.etoday.co.kr/pto_db/2025/06/20250616152459_2186163_708_500.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">수요 급증</span><h3 class="card-title">장마 장기화에 레인웨어 '일상복'으로 진화 — 유통가 전면 배치</h3></div>
         <div class="card-body">
-          <p class="card-title">장마 장기화에 레인웨어 '일상복'으로 진화 — 유통가 전면 배치</p>
           <p class="card-summary">빨라지고 길어진 장마로 레인부츠·재킷·우산이 시즌 용품을 넘어 데일리 아이템으로 진화. 백화점·온라인이 레인웨어를 전면 배치하며 물량을 늘렸다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 리끌로우 레인부츠는 '데일리 착용' 코디 제안 + 장마 키워드 상시 노출.</div>
-          <p class="card-link"><a href="https://www.etoday.co.kr/news/view/2479193" target="_blank">▶ 이투데이</a></p>
+          <div class="card-impl"><b>시사점</b> 레인부츠는 비 올 때만 신는 신발이 아니라는 코디 제안이 필요하다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.etoday.co.kr/news/view/2479193" target="_blank">이투데이</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.newscj.com/news/thumbnail/202506/3283855_3351501_3552_v150.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">리테일</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.newscj.com/news/thumbnail/202506/3283855_3351501_3552_v150.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">리테일</span><h3 class="card-title">기후위기에 유통업계 '레인웨어' 강화 — 첼시 숏부츠 판매 55%↑</h3></div>
         <div class="card-body">
-          <p class="card-title">기후위기에 유통업계 '레인웨어' 강화 — 첼시 숏부츠 판매 55%↑</p>
           <p class="card-summary">예측불허 날씨에 유통업계가 레인웨어 물량을 대폭 확대. 바버는 레인부츠 상품군 2배, W컨셉은 관련 매출 30%↑·첼시 숏부츠 55%↑를 기록했다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 미들·숏(첼시) 기장 + 방수 스펙 수치화로 '패션 부츠' 포지셔닝.</div>
-          <p class="card-link"><a href="https://www.newscj.com/news/articleView.html?idxno=3283855" target="_blank">▶ 천지일보</a></p>
+          <div class="card-impl"><b>시사점</b> 기장을 미들·첼시로 짧게 가고 방수 성능을 숫자로 밝히면 패션 부츠로 읽힌다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.newscj.com/news/articleView.html?idxno=3283855" target="_blank">천지일보</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.ktnews.com/news/thumbnail/202604/145384_124125_5324_v150.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">신제품</span></div>
+        <div class="card-img" style="background-image:url('https://www.ktnews.com/news/thumbnail/202604/145384_124125_5324_v150.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">신제품</span><h3 class="card-title">락피쉬웨더웨어, 2026 레인 컬렉션 — 우산 라인업 확대</h3></div>
         <div class="card-body">
-          <p class="card-title">락피쉬웨더웨어, 2026 레인 컬렉션 — 우산 라인업 확대</p>
           <p class="card-summary">락피쉬웨더웨어가 레인 컬렉션을 우산 중심으로 확대. 투명·컬러·체크 장우산과 자외선차단·방수 3단 우산 등 여름 잡화군을 대폭 보강했다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 레인부츠+우산+양산 묶은 '장마 잡화 세트'로 카테고리·객단가 확장.</div>
-          <p class="card-link"><a href="https://www.ktnews.com/news/articleView.html?idxno=145384" target="_blank">▶ 한국섬유신문</a></p>
+          <div class="card-impl"><b>시사점</b> 레인부츠에 우산·양산을 묶어 장마 세트로 팔면 객단가를 올릴 수 있다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.ktnews.com/news/articleView.html?idxno=145384" target="_blank">한국섬유신문</a></p>
       </article>
     </div>
   </section>
@@ -257,58 +256,52 @@
     </div>
     <div class="rail">
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.apparelnews.co.kr/upfiles/manage/202602/0df6ad2a5f694ff93c8d8fe541fff549.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">실적·전략</span></div>
+        <div class="card-img" style="background-image:url('https://www.apparelnews.co.kr/upfiles/manage/202602/0df6ad2a5f694ff93c8d8fe541fff549.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">실적·전략</span><h3 class="card-title">에이피알 '2조 클럽' 정조준 — 하반기 EBD 의료기기 출시 예고</h3></div>
         <div class="card-body">
-          <p class="card-title">에이피알 '2조 클럽' 정조준 — 하반기 EBD 의료기기 출시 예고</p>
           <p class="card-summary">에이피알이 올해 매출 2조 1,000억원(전년比 +40%) 가이던스 제시. 하반기 에너지기반의료기기(EBD)로 병원·에스테틱 B2B까지 확장을 예고했다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 더리아는 '가성비 프리미엄 + AI 맞춤' 틈새로 대장주와 정면 경쟁 회피.</div>
-          <p class="card-link"><a href="https://www.apparelnews.co.kr/news/news_view/?idx=223427" target="_blank">▶ 어패럴뉴스</a></p>
+          <div class="card-impl"><b>시사점</b> 더리아는 대형사와 정면으로 붙기보다 가성비와 맞춤 기능 틈새를 파고든다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.apparelnews.co.kr/news/news_view/?idx=223427" target="_blank">어패럴뉴스</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20251251/art_17657641002851_c48404.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">경쟁사 신제품</span></div>
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20251251/art_17657641002851_c48404.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">경쟁사 신제품</span><h3 class="card-title">메디큐브 에이지알, '부스터 브이 롤러 헤드' 신제품 — 결합형 확장</h3></div>
         <div class="card-body">
-          <p class="card-title">메디큐브 에이지알, '부스터 브이 롤러 헤드' 신제품 — 결합형 확장</p>
           <p class="card-summary">'부스터 프로 미니 플러스'에 결합하는 헤드형 신제품 출시. 클렌징·기초·탄력 케어를 하나의 디바이스 플랫폼으로 확장한 결합형 라인업을 완성했다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 본체+교체 헤드형 구조로 재구매·객단가를 높이는 제품 로드맵 참고.</div>
-          <p class="card-link"><a href="https://www.cosinkorea.com/news/article.html?no=56486" target="_blank">▶ 코스인코리아</a></p>
+          <div class="card-impl"><b>시사점</b> 본체를 사면 헤드를 계속 사게 되는 구조다. 재구매를 만드는 방식으로 참고할 만하다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=56486" target="_blank">코스인코리아</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://img.etoday.co.kr/pto_db/2026/06/20260629150051_2352380_1199_435.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">시장 동향</span></div>
+        <div class="card-img" style="background-image:url('https://img.etoday.co.kr/pto_db/2026/06/20260629150051_2352380_1199_435.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">시장 동향</span><h3 class="card-title">K뷰티 신성장동력 '디바이스' 전쟁 본격화 — 국내 4社4色</h3></div>
         <div class="card-body">
-          <p class="card-title">K뷰티 신성장동력 '디바이스' 전쟁 본격화 — 국내 4社4色</p>
           <p class="card-summary">에이피알·아모레·LG생건·동국제약 등 '4社4色' 핵심기술로 디바이스 주도권 경쟁. 국내 시장은 2019년 2,100억→2024년 6,800억으로 3배 이상 성장.</p>
-          <div class="card-impl"><b>💡 시사점</b> 대형사 스펙 경쟁 속, 더리아는 명확한 효능 USP 하나로 메시지 집중.</div>
-          <p class="card-link"><a href="https://www.etoday.co.kr/news/view/2597722" target="_blank">▶ 이투데이</a></p>
+          <div class="card-impl"><b>시사점</b> 대형사가 스펙을 늘리는 동안 더리아는 효능 하나만 분명히 말하는 편이 낫다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.etoday.co.kr/news/view/2597722" target="_blank">이투데이</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.shinailbo.co.kr/news/photo/202509/2114047_1215189_4040.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">경쟁 구도</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.shinailbo.co.kr/news/photo/202509/2114047_1215189_4040.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">경쟁 구도</span><h3 class="card-title">아모레·LG, 뷰티 디바이스 '판' 키운다 — 대형사 본격 참전</h3></div>
         <div class="card-body">
-          <p class="card-title">아모레·LG, 뷰티 디바이스 '판' 키운다 — 대형사 본격 참전</p>
           <p class="card-summary">에이피알이 연 시장에 아모레(메이크온)·LG생건(프라엘)이 신제품으로 가세. 차세대 성장동력으로 낙점하고 주도권 확보 경쟁에 본격 돌입했다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 대형사 진입으로 '효능 신뢰' 경쟁 심화 — 임상·후기 데이터 확보가 관건.</div>
-          <p class="card-link"><a href="https://www.shinailbo.co.kr/news/articleView.html?idxno=2114047" target="_blank">▶ 신아일보</a></p>
+          <div class="card-impl"><b>시사점</b> 대형사가 들어오면서 효능을 증명하라는 요구가 커졌다. 임상과 후기가 필요하다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.shinailbo.co.kr/news/articleView.html?idxno=2114047" target="_blank">신아일보</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.sisajournal-e.com/news/thumbnail/202605/420912_234279_2842_v150.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">경쟁사 동향</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.sisajournal-e.com/news/thumbnail/202605/420912_234279_2842_v150.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">경쟁사 동향</span><h3 class="card-title">LG생건 '프라엘', 연 1500~2000억대 안착 — 신제품 잇단 출시</h3></div>
         <div class="card-body">
-          <p class="card-title">LG생건 '프라엘', 연 1500~2000억대 안착 — 신제품 잇단 출시</p>
           <p class="card-summary">LG생건이 이관받은 프라엘이 연 1,500~2,000억 매출로 안착. '수퍼폼 갈바닉 부스터'·'써마샷 얼티밋' 등 신제품을 잇달아 출시하며 라인을 강화.</p>
-          <div class="card-impl"><b>💡 시사점</b> 대형사의 라인 확장 속도에 맞춰 더리아도 신제품 출시 주기 단축 검토.</div>
-          <p class="card-link"><a href="https://www.sisajournal-e.com/news/articleView.html?idxno=420912" target="_blank">▶ 시사저널e</a></p>
+          <div class="card-impl"><b>시사점</b> 대형사가 라인을 빠르게 늘리고 있어 더리아도 출시 주기를 당겨야 한다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.sisajournal-e.com/news/articleView.html?idxno=420912" target="_blank">시사저널e</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://wimg.sedaily.com/news/cms/2026/03/15/news-p.v1.20260315.a8001d85bf57458ba0a1b4e0392ea619_R.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">사업 확장</span></div>
+        <div class="card-img" style="background-image:url('https://wimg.sedaily.com/news/cms/2026/03/15/news-p.v1.20260315.a8001d85bf57458ba0a1b4e0392ea619_R.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">사업 확장</span><h3 class="card-title">에이피알, 화장품 넘어 '의료기기'로 — B2B 뷰티테크 시동</h3></div>
         <div class="card-body">
-          <p class="card-title">에이피알, 화장품 넘어 '의료기기'로 — B2B 뷰티테크 시동</p>
           <p class="card-summary">에이피알이 EBD를 시작으로 전문 의료기기 시장에 출사표. 2027년 말에는 PDRN 주입 의료기기까지 자체 개발·양산해 미래 먹거리로 삼을 계획이다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 디바이스→의료기기 확장 로드맵 벤치마킹, 홈케어 단계에서 근거 축적 우선.</div>
-          <p class="card-link"><a href="https://m.sedaily.com/amparticle/20019505" target="_blank">▶ 서울경제</a></p>
+          <div class="card-impl"><b>시사점</b> 의료기기까지 가려면 홈케어 단계에서 효능 근거를 미리 쌓아둬야 한다.</div>
         </div>
+        <p class="card-foot"><a href="https://m.sedaily.com/amparticle/20019505" target="_blank">서울경제</a></p>
       </article>
     </div>
   </section>
@@ -322,67 +315,60 @@
     </div>
     <div class="rail">
       <article class="card">
-        <div class="card-img" style="background-image:url('https://img.etnews.com/news/article/2026/06/30/news-p.v1.20260630.ce536efda7ec410eabffb7e2f6444016_P1.png'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼 정책</span></div>
+        <div class="card-img" style="background-image:url('https://img.etnews.com/news/article/2026/06/30/news-p.v1.20260630.ce536efda7ec410eabffb7e2f6444016_P1.png'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼 정책</span><h3 class="card-title">쿠팡, 상품명 '네이버·무신사·테무' 언급 전면 금지 — AI쇼핑 정조준</h3></div>
         <div class="card-body">
-          <p class="card-title">쿠팡, 상품명 '네이버·무신사·테무' 언급 전면 금지 — AI쇼핑 정조준</p>
           <p class="card-summary">6.30 공지로 상품명에 네이버·무신사·테무·11번가·아마존 등 경쟁 플랫폼 언급 금지. 흰 배경·상품 중심 대표이미지 표준화로 AI 쇼핑 정합성 확보.</p>
-          <div class="card-impl"><b>💡 시사점</b> 자사 4개 브랜드 쿠팡 상품명·대표이미지를 새 표준에 맞춰 즉시 정비.</div>
-          <p class="card-link"><a href="https://www.etnews.com/20260630000325" target="_blank">▶ 전자신문</a></p>
+          <div class="card-impl"><b>시사점</b> 4개 브랜드 쿠팡 상품명과 대표이미지를 새 기준에 맞춰 바로 고쳐야 한다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.etnews.com/20260630000325" target="_blank">전자신문</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260625/art_17817652096926_c6ea37.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼</span></div>
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20260625/art_17817652096926_c6ea37.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼</span><h3 class="card-title">틱톡숍, 글로벌 뷰티 유통의 '게임체인저' 부상</h3></div>
         <div class="card-body">
-          <p class="card-title">틱톡숍, 글로벌 뷰티 유통의 '게임체인저' 부상</p>
           <p class="card-summary">이커머스 주도권이 '검색'에서 '숏폼 영상'으로 이동. 콘텐츠 시청 중 즉시 구매되는 틱톡숍이 어필리에이트(커미션 15~30%) 모델로 뷰티 판도를 흔든다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 뷰티 4개 브랜드 숏폼×어필리에이트 크리에이터 협업을 성과 기반으로 설계.</div>
-          <p class="card-link"><a href="https://www.cosinkorea.com/news/article.html?no=57671" target="_blank">▶ 코스인코리아</a></p>
+          <div class="card-impl"><b>시사점</b> 크리에이터 협업은 고정비를 주기보다 판매 성과에 연동하는 방식이 안전하다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=57671" target="_blank">코스인코리아</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.aimarketingnews.io/news/photo/202508/3737437_259_2325.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.aimarketingnews.io/news/photo/202508/3737437_259_2325.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼</span><h3 class="card-title">틱톡숍 7월 한국 상륙 확정 — 라이브커머스 경쟁 본격화</h3></div>
         <div class="card-body">
-          <p class="card-title">틱톡숍 7월 한국 상륙 확정 — 라이브커머스 경쟁 본격화</p>
           <p class="card-summary">틱톡숍이 7월 한국 서비스를 개시하며 라이브·숏폼 커머스 경쟁에 합류. '코리아-US 크로스보더'로 한국 사업자의 미국 틱톡숍 입점도 가능해졌다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 4개 브랜드 공식 스토어 개설 + 크로스보더(미국) 입점 동시 준비.</div>
-          <p class="card-link"><a href="https://www.aimarketingnews.io/news/articleView.html?idxno=3737437" target="_blank">▶ AI마케팅뉴스</a></p>
+          <div class="card-impl"><b>시사점</b> 공식 스토어 개설과 미국 역직구 입점을 같이 준비해두는 게 좋다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.aimarketingnews.io/news/articleView.html?idxno=3737437" target="_blank">AI마케팅뉴스</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.joongangenews.com/news/photo/202605/518807_322944_59.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">인플루언서</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.joongangenews.com/news/photo/202605/518807_322944_59.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">인플루언서</span><h3 class="card-title">무신사 '엑스더리그' — 9개국 인플루언서 커머스 국가대항전</h3></div>
         <div class="card-body">
-          <p class="card-title">무신사 '엑스더리그' — 9개국 인플루언서 커머스 국가대항전</p>
           <p class="card-summary">무신사 메가스토어 성수에 9개국 톱 인플루언서 40인 집결. 상금 50만달러를 걸고 무신사 PB로 겨루는 글로벌 콘텐츠 커머스 리그, 7월 말 ENA·OTT 방영.</p>
-          <div class="card-impl"><b>💡 시사점</b> 인플루언서×PB×방송 결합 모델 참고 — 자사 브랜드 콘텐츠 커머스화 검토.</div>
-          <p class="card-link"><a href="https://www.joongangenews.com/news/articleView.html?idxno=518807" target="_blank">▶ 중앙이코노미뉴스</a></p>
+          <div class="card-impl"><b>시사점</b> 인플루언서가 자체 브랜드를 만들고 방송까지 하는 모델을 눈여겨볼 만하다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.joongangenews.com/news/articleView.html?idxno=518807" target="_blank">중앙이코노미뉴스</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.byline.network/wp-content/uploads/2026/04/naver-1784.jpeg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">광고 플랫폼</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.byline.network/wp-content/uploads/2026/04/naver-1784.jpeg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">광고 플랫폼</span><h3 class="card-title">네이버, 7월 'AI 브리핑' 지면 광고 출시 — 맥락형 자동 노출</h3></div>
         <div class="card-body">
-          <p class="card-title">네이버, 7월 'AI 브리핑' 지면 광고 출시 — 맥락형 자동 노출</p>
           <p class="card-summary">7월 15일 광고주센터 오픈·21일 노출 시작. AI가 검색 의도·맥락을 판단해 적합한 AI 브리핑 지면에만 광고를 자동 배치하는 방식으로 개편된다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 키워드 관리형에서 맥락형으로 전환 대비 — 소재·랜딩의 '의도 적합성' 강화.</div>
-          <p class="card-link"><a href="https://byline.network/2026/04/30_1928745/" target="_blank">▶ 바이라인네트워크</a></p>
+          <div class="card-impl"><b>시사점</b> 키워드를 고르는 광고에서 맥락을 읽는 광고로 넘어간다. 소재와 랜딩을 맞춰야 한다.</div>
         </div>
+        <p class="card-foot"><a href="https://byline.network/2026/04/30_1928745/" target="_blank">바이라인네트워크</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://cdn.joongangenews.com/news/photo/202606/526655_331508_5239.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">시장 데이터</span></div>
+        <div class="card-img" style="background-image:url('https://cdn.joongangenews.com/news/photo/202606/526655_331508_5239.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">시장 데이터</span><h3 class="card-title">무신사 '글로벌 몬스터세일' 대박 — 거래액 486% 폭증</h3></div>
         <div class="card-body">
-          <p class="card-title">무신사 '글로벌 몬스터세일' 대박 — 거래액 486% 폭증</p>
           <p class="card-summary">무신사 글로벌 대형 프로모션 '몬스터세일' 거래액이 전년 대비 486% 급증. K-패션·뷰티의 해외 수요가 세일 이벤트를 통해 폭발적으로 확인됐다.</p>
-          <div class="card-impl"><b>💡 시사점</b> 대형 세일 이벤트에 글로벌 배송·현지 결제 붙여 인바운드·역직구 수요 흡수.</div>
-          <p class="card-link"><a href="https://www.joongangenews.com/news/articleView.html?idxno=526655" target="_blank">▶ 중앙이코노미뉴스</a></p>
+          <div class="card-impl"><b>시사점</b> 세일에 맞춰 해외 배송과 현지 결제를 열어두면 역직구 수요를 받을 수 있다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.joongangenews.com/news/articleView.html?idxno=526655" target="_blank">중앙이코노미뉴스</a></p>
       </article>
       <article class="card">
-        <div class="card-img" style="background-image:url('https://image.dnews.co.kr/photo/photo/2026/01/15/202601151113000960815-2-642276.png'), var(--g4)"><span class="card-tag" style="background:var(--c4)">시장 데이터</span></div>
+        <div class="card-img" style="background-image:url('https://image.dnews.co.kr/photo/photo/2026/01/15/202601151113000960815-2-642276.png'), var(--g4)"><span class="card-tag" style="background:var(--c4)">시장 데이터</span><h3 class="card-title">라이브커머스, '양의 경쟁' 끝 — 콘텐츠 싸움으로 6조 시장 넘본다</h3></div>
         <div class="card-body">
-          <p class="card-title">라이브커머스, '양의 경쟁' 끝 — 콘텐츠 싸움으로 6조 시장 넘본다</p>
           <p class="card-summary">2025년 시장 약 4.7조, 2026년 6조 전망. 방송 수·조회수는 줄었지만 방송당 평균 거래액이 998만원(+61.6%)으로 급증하며 효율·콘텐츠 중심으로 재편.</p>
-          <div class="card-impl"><b>💡 시사점</b> 방송 수보다 '콘텐츠 완성도·타깃 정교화'에 집중해 방송당 효율을 끌어올린다.</div>
-          <p class="card-link"><a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202601151113000960815" target="_blank">▶ 대한경제</a></p>
+          <div class="card-impl"><b>시사점</b> 라이브는 많이 트는 것보다 한 번을 제대로 만드는 편이 효율이 높다.</div>
         </div>
+        <p class="card-foot"><a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202601151113000960815" target="_blank">대한경제</a></p>
       </article>
     </div>
   </section>
