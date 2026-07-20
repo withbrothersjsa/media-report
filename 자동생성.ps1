@@ -1,4 +1,4 @@
-# ============================================================
+﻿# ============================================================
 #  미디어커머스 업계 동향 - 주간 리포트 '무인 자동 생성' (스케줄러용)
 #  용도:  작업 스케줄러가 월요일 오전에 이 스크립트를 실행 → 사람 없이
 #         Claude(headless)가 지난 7일 동향을 수집해 리포트를 생성하고
@@ -9,6 +9,13 @@
 
 $ErrorActionPreference = "Stop"
 chcp 65001 > $null   # 한글 출력 깨짐 방지(UTF-8)
+# claude(headless) 출력이 로그에서 깨지지 않도록 콘솔 인코딩도 UTF-8로 맞춘다
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
+# ※ 이 파일은 반드시 'UTF-8 BOM 있음'으로 저장할 것.
+#   이 PC는 ANSI 코드페이지가 949라 BOM 없는 UTF-8이면 PowerShell 5.1이
+#   한글을 CP949로 오독해 파싱 단계에서 죽는다(로그도 안 남고 종료코드 1).
 
 $workDir = $PSScriptRoot
 Set-Location $workDir
@@ -151,7 +158,7 @@ $prompt = @"
 - '$outRel' 파일로 저장한다. 상단 헤더에 생성일 / 수집 기간 / 핵심 헤드라인 5개(번호 배지). 담당 브랜드 줄은 넣지 않는다.
 - 헤드라인 라벨 문구는 '$weekLabel' 로 한다.
 - 작업이 끝나면 '$outRel' 내용을 루트 index.html 로도 복사해 최신본을 갱신한다.
-- 절대 git commit/push(발행)는 하지 않는다. 발행은 사람이 검토 후 직접 한다.
+- 너는 git commit/push 를 하지 마라. 발행은 이 스크립트가 검증을 마친 뒤 알아서 처리한다.
 - 폴더 CLAUDE.md '진행 현황 메모'에 이번 회차 한 줄을 추가한다.
 
 모든 설명·출력은 한국어. 끝나면 생성한 파일 경로와 카테고리별 카드 수, 링크 점검 결과(정상/교체)를 요약해서 보고해.
@@ -167,10 +174,55 @@ Log "Claude(headless) 실행 시작... (리서치·작성·검증까지 수 분 
 Log "Claude 실행 종료."
 
 if (Test-Path $outFull) {
-    Log "[완료] $outRel 생성 확인됨. (발행은 아직 안 함)"
-    # 월요일 아침 바로 확인할 수 있도록 기본 브라우저로 결과 열기
-    try { Start-Process $outFull } catch { Log "브라우저 자동 열기 실패(무시): $($_.Exception.Message)" }
-    Log "검토 후 '발행.bat' 더블클릭 시 GitHub Pages에 게시됩니다."
+    Log "[완료] $outRel 생성 확인됨."
+
+    # --- 발행 전 최소 점검 (빈 껍데기·생성 실패본을 올리지 않기 위한 안전장치) ---
+    $html      = Get-Content $outFull -Raw -Encoding utf8
+    $cardCount = ([regex]::Matches($html, 'class="card[" ]')).Count
+    Log "카드 수 점검: $cardCount 장"
+
+    if ($cardCount -lt 8) {
+        Log "[중단] 카드가 $cardCount 장뿐이라 발행하지 않습니다. 로그 확인 후 수동 발행하세요."
+    }
+    elseif (-not (Test-Path (Join-Path $workDir "index.html"))) {
+        Log "[중단] index.html 갱신이 안 됐습니다. 발행하지 않습니다."
+    }
+    else {
+        # --- 발행 (GitHub Pages) ---
+        # ※ PS 5.1 주의: 네이티브 명령(git)은 stderr에 경고만 써도
+        #   $ErrorActionPreference="Stop" 아래서 종료 오류로 승격된다.
+        #   (git add 의 "LF will be replaced by CRLF" 경고로 발행이 실패했던 이력 있음)
+        #   그래서 git 구간에서만 Continue 로 낮추고, 성공 판정은 $LASTEXITCODE 로만 한다.
+        Log "발행 시작..."
+        $prevEAP = $ErrorActionPreference
+        $ErrorActionPreference = "Continue"
+        try {
+            $addOut = & git add -A 2>&1
+            if ($LASTEXITCODE -ne 0) { throw "git add 실패(코드 $LASTEXITCODE): $addOut" }
+
+            $msg = "업계동향 리포트 $ownYear-$('{0:00}' -f $ownMonth) ${week}주차 ($fromStr~$toStr)"
+            $commitOut = & git commit -m $msg 2>&1
+            $commitCode = $LASTEXITCODE
+            Log ("git commit: " + ($commitOut -join " / "))
+            # 커밋할 변경이 없으면 exit 1 → 오류가 아니라 '이미 최신'
+            if ($commitCode -ne 0 -and ($commitOut -join " ") -notmatch "nothing to commit|working tree clean") {
+                throw "git commit 실패(코드 $commitCode)"
+            }
+
+            $pushOut = & git push origin main 2>&1
+            $pushCode = $LASTEXITCODE
+            Log ("git push: " + ($pushOut -join " / "))
+            if ($pushCode -eq 0) {
+                Log "[발행 완료] https://withbrothersjsa.github.io/media-report/"
+            } else {
+                Log "[발행 실패] push 오류(코드 $pushCode). 인증(GitHub Desktop) 확인 후 '발행.bat' 수동 실행."
+            }
+        } catch {
+            Log "[발행 실패] $($_.Exception.Message)"
+        } finally {
+            $ErrorActionPreference = $prevEAP
+        }
+    }
 } else {
     Log "[경고] $outRel 가 생성되지 않았습니다. 로그($logFile)를 확인하세요."
 }
