@@ -16,6 +16,9 @@ Write-Host "==================================================" -ForegroundColor
 Write-Host "  사이트 발행" -ForegroundColor Cyan
 Write-Host "==================================================" -ForegroundColor Cyan
 
+# 아카이브 목록 갱신 (주차 이동 바가 읽는 archive.json)
+python (Join-Path $workDir "아카이브생성.py")
+
 git add -A
 if (git status --porcelain) {
     $msg = "내용 수정 발행: " + (Get-Date -Format "yyyy-MM-dd HH:mm")

@@ -178,6 +178,8 @@ Write-Host "=================================================="
 
 # === 사이트 발행 (GitHub Pages) ===
 if (Test-Path $outFull) {
+    # 아카이브 목록 갱신 (주차 이동 바가 읽는 archive.json)
+    python (Join-Path $workDir "아카이브생성.py")
     Write-Host ""
     $pub = Read-Host "  방금 만든 리포트를 사이트에 발행할까요? (Y/N)"
     if ($pub -match '^[Yy]') {

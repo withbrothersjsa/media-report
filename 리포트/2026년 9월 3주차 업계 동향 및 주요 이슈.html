@@ -5,69 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <title>미디어커머스 업계 동향 리포트 – 2026-09-21</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
   <style>
     :root {
-      --primary: #2d2d6b;
-      --accent: #e05c8a;
-      --bg: #f5f6fa;
+      --primary: #23233f;
+      --accent: #d6537f;
+      --bg: #f4f4f7;
       --card: #ffffff;
-      --border: #e6e6ef;
-      --text: #2c2c3a;
-      --muted: #7a7a90;
-      --c1: #e05c8a; --c2: #1f9d8f; --c3: #6c5ce7; --c4: #2d6be0;
-      --g1: linear-gradient(135deg,#f6a5c0,#e05c8a);
-      --g2: linear-gradient(135deg,#7fd8cf,#1f9d8f);
-      --g3: linear-gradient(135deg,#a99bf0,#6c5ce7);
-      --g4: linear-gradient(135deg,#8fb8f5,#2d6be0);
+      --border: #e8e8ef;
+      --text: #2b2b38;
+      --muted: #8a8a9d;
+      --c1: #d6537f; --c2: #14988a; --c3: #6a5ae0; --c4: #2f6bdb;
+      --g1: linear-gradient(135deg,#f2b8cb,#d6537f);
+      --g2: linear-gradient(135deg,#8fd8cf,#14988a);
+      --g3: linear-gradient(135deg,#b3a8f2,#6a5ae0);
+      --g4: linear-gradient(135deg,#9dbef4,#2f6bdb);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
       background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* 헤더 (배경은 전체 폭, 내용은 본문과 같은 1180px 컬럼에 정렬) */
-    header { background: linear-gradient(120deg, #2d2d6b 0%, #4a3a8c 100%); color: #fff; padding: 28px 0 24px; }
+    header {
+      background: #16162e; color: #fff; padding: 40px 0 32px;
+      background-image:
+        radial-gradient(900px 400px at 88% -60%, rgba(106,90,224,.38), transparent 62%),
+        radial-gradient(700px 320px at 6% 130%, rgba(214,83,127,.20), transparent 60%);
+    }
     .header-inner { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
-    header .meta { font-size: 12.5px; opacity: .75; margin-bottom: 6px; }
-    header h1 { font-size: 22px; font-weight: 800; margin-bottom: 0; letter-spacing: -.01em; }
+    header .meta { font-size: 12px; letter-spacing: .04em; opacity: .58; margin-bottom: 10px; }
+    header h1 { font-size: 27px; font-weight: 800; margin-bottom: 0; letter-spacing: -.03em; }
     /* 헤드라인: 박스 없이 헤더에 녹여든 번호 리스트 */
-    .headline-area { margin-top: 16px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,.18); }
-    .headline-label { font-size: 11.5px; font-weight: 700; letter-spacing: .08em; opacity: .6; margin-bottom: 11px; text-transform: uppercase; }
-    .headlines { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 32px; }
-    .hl { display: flex; align-items: baseline; gap: 10px; }
-    .hl .num { flex: 0 0 auto; font-size: 14px; font-weight: 800; color: #ffb3d0; font-variant-numeric: tabular-nums; }
-    .hl .txt { font-size: 14px; line-height: 1.45; font-weight: 600; color: rgba(255,255,255,.92); }
+    .headline-area { margin-top: 22px; padding-top: 19px; border-top: 1px solid rgba(255,255,255,.13); }
+    .headline-label { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; opacity: .55; margin-bottom: 13px; text-transform: uppercase; }
+    .headlines { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 36px; }
+    .hl { display: flex; align-items: baseline; gap: 11px; }
+    .hl .num { flex: 0 0 auto; font-size: 13.5px; font-weight: 800; color: #f0a4c0; font-variant-numeric: tabular-nums; }
+    .hl .txt { font-size: 14px; line-height: 1.5; font-weight: 600; color: rgba(255,255,255,.9); letter-spacing: -.01em; }
     @media (max-width: 680px) { .headlines { grid-template-columns: 1fr; } }
 
     /* 본문 */
-    main { max-width: 1180px; margin: 28px auto; padding: 0 20px 50px; }
-    .section { margin-bottom: 36px; }
-    .section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .section-head .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .section-head h2 { font-size: 17px; font-weight: 800; color: var(--primary); }
-    .section-head .count { font-size: 12px; font-weight: 700; color: var(--muted); background: #ececf3; border-radius: 20px; padding: 2px 9px; }
-    .section-head .hint { margin-left: auto; font-size: 12px; color: var(--muted); }
+    main { max-width: 1180px; margin: 34px auto; padding: 0 20px 56px; }
+    .section { margin-bottom: 44px; }
+    .section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+    .section-head .dot { width: 10px; height: 10px; border-radius: 3px; }
+    .section-head h2 { font-size: 18px; font-weight: 800; color: var(--primary); letter-spacing: -.02em; }
+    .section-head .count { font-size: 12px; font-weight: 700; color: var(--muted); background: #e9e9f1; border-radius: 20px; padding: 2px 10px; }
+    .section-head .hint { margin-left: auto; font-size: 12px; color: #b3b3c2; }
 
     /* 섹션별 '이번주 이슈 요약' 박스 */
-    .section-summary { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--c1); border-radius: 12px; padding: 14px 18px 15px; margin-bottom: 16px; }
-    .section-summary .ss-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .03em; color: #fff; padding: 3px 11px; border-radius: 20px; margin-bottom: 9px; }
-    .section-summary p { font-size: 13.5px; line-height: 1.75; color: #45455a; }
+    .section-summary { background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--c1); border-radius: 14px; padding: 16px 20px 17px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(22,22,46,.04); }
+    .section-summary .ss-label { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; color: #fff; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
+    .section-summary p { font-size: 13.5px; line-height: 1.8; color: #4a4a5e; }
     .section-summary b { color: var(--primary); font-weight: 700; }
 
-    .rail { display: flex; gap: 16px; overflow-x: auto; padding: 4px 4px 16px; scroll-snap-type: x mandatory; }
-    .rail::-webkit-scrollbar { height: 8px; }
-    .rail::-webkit-scrollbar-track { background: #ececf3; border-radius: 4px; }
-    .rail::-webkit-scrollbar-thumb { background: #c9c9d8; border-radius: 4px; }
+    .rail { display: flex; gap: 18px; overflow-x: auto; padding: 6px 4px 18px; scroll-snap-type: x mandatory; }
+    .rail::-webkit-scrollbar { height: 6px; }
+    .rail::-webkit-scrollbar-track { background: transparent; }
+    .rail::-webkit-scrollbar-thumb { background: #d2d2de; border-radius: 3px; }
+    .rail::-webkit-scrollbar-thumb:hover { background: #b9b9c9; }
 
     .card {
       flex: 0 0 300px; width: 300px; background: var(--card);
-      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
       scroll-snap-align: start; display: flex; flex-direction: column;
-      transition: transform .15s, box-shadow .15s;
+      transition: transform .18s ease, box-shadow .18s ease;
       position: relative; cursor: pointer;
+      box-shadow: 0 1px 3px rgba(22,22,46,.05);
     }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(45,45,107,.14); }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(22,22,46,.15); }
 
     /* 이미지: 카드 상단을 크게 차지하고, 제목을 이미지 위에 얹는다 */
     .card-img {
@@ -75,29 +84,29 @@
       display: flex; align-items: flex-end;
     }
     /* 밝은 기사 사진에서도 흰 제목이 읽히도록 하단을 어둡게 */
-    .card-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.1) 40%, rgba(0,0,0,.85) 100%); }
-    .card-tag { position: absolute; top: 12px; right: 12px; z-index: 2; color: #fff; font-size: 10.5px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+    .card-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,25,.04) 0%, rgba(10,10,25,.08) 38%, rgba(10,10,25,.88) 100%); }
+    .card-tag { position: absolute; top: 12px; right: 12px; z-index: 2; color: #fff; font-size: 10.5px; font-weight: 700; padding: 4px 11px; border-radius: 20px; letter-spacing: .01em; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
 
     .card-title {
-      position: relative; z-index: 2; padding: 0 16px 15px;
-      font-size: 17px; font-weight: 800; line-height: 1.32; color: #fff; letter-spacing: -.02em;
-      text-shadow: 0 2px 10px rgba(0,0,0,.45);
+      position: relative; z-index: 2; padding: 0 17px 16px;
+      font-size: 16.5px; font-weight: 800; line-height: 1.36; color: #fff; letter-spacing: -.02em;
+      text-shadow: 0 2px 12px rgba(0,0,0,.5);
       display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
 
-    .card-body { padding: 14px 16px 0; display: flex; flex-direction: column; flex: 1; }
-    .card-summary { font-size: 13px; color: #56566a; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .card-impl { margin-top: auto; background: #fbf2f7; border-radius: 8px; padding: 9px 11px; font-size: 12px; color: #7a2a52; line-height: 1.45; }
+    .card-body { padding: 15px 17px 0; display: flex; flex-direction: column; flex: 1; }
+    .card-summary { font-size: 13px; line-height: 1.65; color: #56566a; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-impl { margin-top: auto; background: #f7f4f9; border-radius: 10px; padding: 10px 12px; font-size: 12px; color: #6b3552; line-height: 1.5; }
     .card-impl b { color: var(--accent); }
 
-    .card-foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 13px; margin-top: 12px; border-top: 1px solid #f0f0f5; }
+    .card-foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 17px 14px; margin-top: 12px; border-top: 1px solid #f1f1f6; }
     .card-foot a { font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; }
     .card-date { font-size: 12px; color: #b3b3c2; font-variant-numeric: tabular-nums; }
     /* 카드 전체를 클릭 영역으로 확장 (이미지 포함 어디든 클릭 시 기사로 이동) */
     .card-foot a::after { content: ""; position: absolute; inset: 0; z-index: 3; }
     .card:hover .card-title { color: #ffd9e6; }
 
-    footer { text-align: center; padding: 22px; font-size: 12px; color: var(--muted); }
+    footer { text-align: center; padding: 26px 20px 34px; font-size: 12px; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -355,5 +364,7 @@
   ⓒ 2026 미디어커머스 업계 동향 리포트 &nbsp;|&nbsp; 생성: Claude (claude-opus-4-8) &nbsp;|&nbsp; 수집 범위: 2026.09.14 ~ 09.20 &nbsp;|&nbsp; 카드뉴스 레이아웃
 </footer>
 
+<script>/* 주차 이동 바: 루트/리포트 폴더 어디서 열려도 weeknav.js 를 찾도록 경로 계산 */
+(function(){var s=document.createElement('script');s.src=(decodeURIComponent(location.pathname).indexOf('/리포트/')>=0?'../':'')+'weeknav.js';document.head.appendChild(s);})();</script>
 </body>
 </html>

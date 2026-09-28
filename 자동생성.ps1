@@ -193,6 +193,10 @@ if (Test-Path $outFull) {
         Log "[중단] index.html 갱신이 안 됐습니다. 발행하지 않습니다."
     }
     else {
+        # --- 아카이브 목록 갱신 (주차 이동 바가 읽는 archive.json) ---
+        $arcOut = & python (Join-Path $workDir "아카이브생성.py") 2>&1
+        Log ("archive.json 갱신: " + ($arcOut -join " / "))
+
         # --- 발행 (GitHub Pages) ---
         # ※ PS 5.1 주의: 네이티브 명령(git)은 stderr에 경고만 써도
         #   $ErrorActionPreference="Stop" 아래서 종료 오류로 승격된다.
