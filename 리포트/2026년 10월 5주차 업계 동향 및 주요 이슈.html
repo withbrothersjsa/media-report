@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>미디어커머스 업계 동향 리포트 – 2026-11-02</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    :root {
+      --primary: #23233f;
+      --accent: #d6537f;
+      --bg: #f4f4f7;
+      --card: #ffffff;
+      --border: #e8e8ef;
+      --text: #2b2b38;
+      --muted: #8a8a9d;
+      --c1: #d6537f; --c2: #14988a; --c3: #6a5ae0; --c4: #2f6bdb;
+      --g1: linear-gradient(135deg,#f2b8cb,#d6537f);
+      --g2: linear-gradient(135deg,#8fd8cf,#14988a);
+      --g3: linear-gradient(135deg,#b3a8f2,#6a5ae0);
+      --g4: linear-gradient(135deg,#9dbef4,#2f6bdb);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 헤더 (배경은 전체 폭, 내용은 본문과 같은 1180px 컬럼에 정렬) */
+    header {
+      background: #16162e; color: #fff; padding: 40px 0 32px;
+      background-image:
+        radial-gradient(900px 400px at 88% -60%, rgba(106,90,224,.38), transparent 62%),
+        radial-gradient(700px 320px at 6% 130%, rgba(214,83,127,.20), transparent 60%);
+    }
+    .header-inner { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+    header .meta { font-size: 12px; letter-spacing: .04em; opacity: .58; margin-bottom: 10px; }
+    header h1 { font-size: 27px; font-weight: 800; margin-bottom: 0; letter-spacing: -.03em; }
+    /* 헤드라인: 박스 없이 헤더에 녹여든 번호 리스트 */
+    .headline-area { margin-top: 22px; padding-top: 19px; border-top: 1px solid rgba(255,255,255,.13); }
+    .headline-label { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; opacity: .55; margin-bottom: 13px; text-transform: uppercase; }
+    .headlines { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 36px; }
+    .hl { display: flex; align-items: baseline; gap: 11px; }
+    .hl .num { flex: 0 0 auto; font-size: 13.5px; font-weight: 800; color: #f0a4c0; font-variant-numeric: tabular-nums; }
+    .hl .txt { font-size: 14px; line-height: 1.5; font-weight: 600; color: rgba(255,255,255,.9); letter-spacing: -.01em; }
+    @media (max-width: 680px) { .headlines { grid-template-columns: 1fr; } }
+
+    /* 본문 */
+    main { max-width: 1180px; margin: 34px auto; padding: 0 20px 56px; }
+    .section { margin-bottom: 44px; }
+    .section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+    .section-head .dot { width: 10px; height: 10px; border-radius: 3px; }
+    .section-head h2 { font-size: 18px; font-weight: 800; color: var(--primary); letter-spacing: -.02em; }
+    .section-head .count { font-size: 12px; font-weight: 700; color: var(--muted); background: #e9e9f1; border-radius: 20px; padding: 2px 10px; }
+    .section-head .hint { margin-left: auto; font-size: 12px; color: #b3b3c2; }
+
+    /* 섹션별 '이번주 이슈 요약' 박스 */
+    .section-summary { background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--c1); border-radius: 14px; padding: 16px 20px 17px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(22,22,46,.04); }
+    .section-summary .ss-label { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; color: #fff; padding: 3px 10px; border-radius: 6px; margin-bottom: 10px; }
+    .section-summary p { font-size: 13.5px; line-height: 1.8; color: #4a4a5e; }
+    .section-summary b { color: var(--primary); font-weight: 700; }
+
+    .rail { display: flex; gap: 18px; overflow-x: auto; padding: 6px 4px 18px; scroll-snap-type: x mandatory; }
+    .rail::-webkit-scrollbar { height: 6px; }
+    .rail::-webkit-scrollbar-track { background: transparent; }
+    .rail::-webkit-scrollbar-thumb { background: #d2d2de; border-radius: 3px; }
+    .rail::-webkit-scrollbar-thumb:hover { background: #b9b9c9; }
+
+    .card {
+      flex: 0 0 300px; width: 300px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 18px; overflow: hidden;
+      scroll-snap-align: start; display: flex; flex-direction: column;
+      transition: transform .18s ease, box-shadow .18s ease;
+      position: relative; cursor: pointer;
+      box-shadow: 0 1px 3px rgba(22,22,46,.05);
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(22,22,46,.15); }
+
+    /* 이미지: 카드 상단을 크게 차지하고, 제목을 이미지 위에 얹는다 */
+    .card-img {
+      position: relative; height: 200px; background-size: cover; background-position: center; background-repeat: no-repeat;
+      display: flex; align-items: flex-end;
+    }
+    /* 밝은 기사 사진에서도 흰 제목이 읽히도록 하단을 어둡게 */
+    .card-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,25,.04) 0%, rgba(10,10,25,.08) 38%, rgba(10,10,25,.88) 100%); }
+    .card-tag { position: absolute; top: 12px; right: 12px; z-index: 2; color: #fff; font-size: 10.5px; font-weight: 700; padding: 4px 11px; border-radius: 20px; letter-spacing: .01em; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+
+    .card-title {
+      position: relative; z-index: 2; padding: 0 17px 16px;
+      font-size: 16.5px; font-weight: 800; line-height: 1.36; color: #fff; letter-spacing: -.02em;
+      text-shadow: 0 2px 12px rgba(0,0,0,.5);
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    .card-body { padding: 15px 17px 0; display: flex; flex-direction: column; flex: 1; }
+    .card-summary { font-size: 13px; line-height: 1.65; color: #56566a; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-impl { margin-top: auto; background: #f7f4f9; border-radius: 10px; padding: 10px 12px; font-size: 12px; color: #6b3552; line-height: 1.5; }
+    .card-impl b { color: var(--accent); }
+
+    .card-foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 17px 14px; margin-top: 12px; border-top: 1px solid #f1f1f6; }
+    .card-foot a { font-size: 12px; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .card-date { font-size: 12px; color: #b3b3c2; font-variant-numeric: tabular-nums; }
+    /* 카드 전체를 클릭 영역으로 확장 (이미지 포함 어디든 클릭 시 기사로 이동) */
+    .card-foot a::after { content: ""; position: absolute; inset: 0; z-index: 3; }
+    .card:hover .card-title { color: #ffd9e6; }
+
+    footer { text-align: center; padding: 26px 20px 34px; font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<header>
+ <div class="header-inner">
+  <p class="meta">생성일: 2026년 11월 2일 (월) &nbsp;|&nbsp; 수집 기간: 2026.10.26 ~ 11.01</p>
+  <h1>미디어커머스 업계 동향 주간 리포트</h1>
+  <div class="headline-area">
+    <p class="headline-label">10월 5주차 핵심 이슈</p>
+    <div class="headlines">
+      <div class="hl"><span class="num">1</span><span class="txt">화장품 수출 10개월 누적 125억6,900만 달러…두 달 남기고 지난해 연간 실적 추월</span></div>
+      <div class="hl"><span class="num">2</span><span class="txt">소비자원, AI 가짜 전문가 동원한 유튜브 부당광고 420건 차단…화장품 72건</span></div>
+      <div class="hl"><span class="num">3</span><span class="txt">에이피알 3분기 매출 7,731억 원(+100.3%)에도 영업이익률 20.8%로 하락</span></div>
+      <div class="hl"><span class="num">4</span><span class="txt">공정위, 쿠팡 '배달앱 끼워팔기' 이틀간 심의…와우멤버십 결합의 강제성이 쟁점</span></div>
+      <div class="hl"><span class="num">5</span><span class="txt">신세계, 롯데 센텀시티점 2,000억 원대 인수…무신사는 성수에 400평 뷰티 매장</span></div>
+    </div>
+  </div>
+ </div>
+</header>
+
+<main>
+
+  <!-- ① 화장품/뷰티 -->
+  <section class="section">
+    <div class="section-head"><span class="dot" style="background:var(--c1)"></span><h2>💄 화장품 / 뷰티</h2><span class="count">7</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c1)">
+      <span class="ss-label" style="background:var(--c1)">이번주 이슈 요약</span>
+      <p>수출 기록이 또 바뀌었다. 10월 화장품 수출은 14억4,400만 달러(+57.5%)로 올해 최고 증가율을 냈고, <b>1~10월 누적 125억6,900만 달러는 지난해 연간 실적(114억1,800만 달러)을 두 달 앞서 넘어섰다</b>. 규제 쪽에서는 한국소비자원이 AI로 만든 가짜 전문가·조작된 체험 후기 등 <b>유튜브 부당광고 420건</b>을 차단했고(화장품 72건), 미국 FDA는 MoCRA에 따른 <b>화장품 강제 리콜 가이드라인</b>을 확정했다. 무역협회 조사에서는 EU 수출기업의 <b>82.5%가 포장규제(PPWR)를 모르거나 개략적으로만 안다</b>고 답했다. 아마존은 신규 셀러 50곳의 첫해 매출 100만 달러를 지원하는 4대 프로젝트를 내놨고, 효성(500억 원 뷰티 펀드)·동원(참존 인수) 등 본업 밖 대기업의 K뷰티 진입이 이어졌다. 아모레퍼시픽그룹은 3분기 영업이익 1,301억 원(+24.7%)을 기록했다.</p>
+    </div>
+    <div class="rail">
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20261144/art_17935097515745_89ce03.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">수출 데이터</span><h3 class="card-title">화장품 수출, 10개월 만에 125억6,900만 달러…지난해 연간 실적 추월</h3></div>
+        <div class="card-body">
+          <p class="card-summary">산업통상부 집계 10월 화장품 수출은 14억4,400만 달러로 전년 동월보다 57.5% 늘어 올해 최고 증가율을 기록했다. 1~10월 누적은 125억6,900만 달러(+33.6%)로 지난해 연간 114억1,800만 달러를 10.1% 넘어섰다. 미국 2억3,000만 달러(+62.7%), EU 1억3,000만 달러(+106.1%) 등 대부분 지역이 늘었고, 연간 150억 달러 돌파 여부가 남은 관심사다.</p>
+          <div class="card-impl"><b>시사점</b> 12개월 연속 증가에 EU가 두 배로 뛰었다. 해외 파트너와 이야기할 때 유럽 성장률을 근거로 쓸 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosmorning.com/news/article.html?no=53837" target="_blank">코스모닝</a><span class="card-date">2026.11.01</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20261044/art_1793092127637_72b05f.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">광고 규제</span><h3 class="card-title">AI 가짜 전문가까지 동원…화장품 부당광고 72건 적발</h3></div>
+        <div class="card-body">
+          <p class="card-summary">한국소비자원이 지난해 10월부터 올해 6월까지 9개월간 유튜브 광고를 점검해 AI로 생성한 가짜 전문가 광고, 기만적 전후 비교 광고 등 부당광고 420건을 차단했다. 화장품은 72건(17.1%)으로, 의약품으로 오인할 우려가 있는 광고가 42건(58.3%), 범위를 벗어난 의학적 효능 표현이 22건이었다. 지난 5월 화장품법 개정으로 AI 가짜 전문가 광고는 금지됐다.</p>
+          <div class="card-impl"><b>시사점</b> 숏폼 광고에 AI 합성 전문가나 전후 비교를 쓰면 바로 걸린다. 운영 중인 소재의 효능 표현부터 다시 봐야 한다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosmorning.com/news/article.html?no=53795" target="_blank">코스모닝</a><span class="card-date">2026.10.27</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20261044/art_17931674489263_a24cbf.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">해외 규제</span><h3 class="card-title">美 FDA, 화장품 강제 리콜 가이드라인 확정…MoCRA 집행 절차 구체화</h3></div>
+        <div class="card-body">
+          <p class="card-summary">FDA가 10월 22일 '화장품 강제 리콜 Q&amp;A 업계 가이드라인'을 초안과 실질적 변경 없이 최종 확정했다. 2022년 제정된 화장품 규제 현대화법(MoCRA)이 부여한 강제 리콜 권한을 어떤 기준으로 판단하고, 자발적 조치 요청부터 유통 중단 명령·청문·후속 리콜 명령까지 어떤 순서로 집행하는지를 문답 형식으로 정리했다. 법적 구속력은 없는 지침이다.</p>
+          <div class="card-impl"><b>시사점</b> 미국은 이제 자발적 회수 요청을 거부하면 강제 리콜로 간다. 수출 품목은 회수 대응 절차를 문서로 갖춰 둘 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=58606" target="_blank">코스인코리아</a><span class="card-date">2026.10.28</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20261044/art_17930884036234_2d3ddc.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">플랫폼·수출</span><h3 class="card-title">K-뷰티 '밀리언 달러 브랜드' 키운다…아마존의 4대 프로젝트</h3></div>
+        <div class="card-body">
+          <p class="card-summary">아마존글로벌셀링코리아가 27일 '아마존 뷰티 인 서울 2026'에서 2027년 K뷰티 지원 4대 프로젝트(밀리언·타이탄·실크로드·아우토반)를 발표했다. 신규 셀러 50곳의 미국 입점 첫해 매출 100만 달러 달성, 선도 브랜드 7곳의 확장 모델, 헤어케어·웰니스로의 카테고리 확장(신제품 200종), 유럽 5개국 진출 절차 간소화가 골자다. 올해 1~9월 아마존 K뷰티 셀러 매출은 전년 대비 두 배 늘었다.</p>
+          <div class="card-impl"><b>시사점</b> 아마존이 신규 셀러 육성 프로그램을 따로 돌린다. 미국 진출을 검토한다면 내년 모집 일정부터 확인해 볼 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosmorning.com/news/article.html?no=53790" target="_blank">코스모닝</a><span class="card-date">2026.10.27</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20261044/art_17932569289726_400caa.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">업계 재편</span><h3 class="card-title">본업 한계 넘어 'K뷰티' 뛰어든 대기업들…펀드·인수로 진입</h3></div>
+        <div class="card-body">
+          <p class="card-summary">본업 성장이 둔화한 대기업들이 화장품으로 신성장 동력을 찾고 있다. 효성벤처스는 ㈜효성이 300억 원을 대는 500억 원 규모 뷰티 펀드를 내년 상반기 결성 목표로 추진 중이며, 앞서 파이온텍·AAC홀딩스·이공이공에 투자했다. 동원그룹의 동원홈푸드는 회생 절차 중인 1세대 화장품 기업 참존의 최종 인수 예정자로 선정돼 포장재·물류 계열사와의 결합을 노린다.</p>
+          <div class="card-impl"><b>시사점</b> 자본력 있는 그룹이 매물과 신진 브랜드를 같이 보고 있다. 투자 유치나 매각을 생각한다면 지금이 창구가 열린 시기다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=58619" target="_blank">코스인코리아</a><span class="card-date">2026.10.29</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.jangup.com/news/thumbnail/202610/100311_72215_1759_v150.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">포장 규제</span><h3 class="card-title">EU 포장규제 본격 시행…수출기업 10곳 중 8곳 "내용 잘 몰라"</h3></div>
+        <div class="card-body">
+          <p class="card-summary">한국무역협회가 EU 수출기업 610곳을 조사한 결과 82.5%가 8월 12일 시행된 포장·포장폐기물 규정(PPWR)을 전혀 모르거나 개략적으로만 안다고 답했다. 자사 제품의 규제 적용 진단을 마쳤거나 진행 중인 곳은 16.7%에 그쳤고, 플라스틱 포장재 사용 기업의 절반 이상이 재생원료 증빙·재활용성 평가 자료를 갖추지 못했다. 추가 비용을 거래가격에 반영하기 어렵다는 답이 81.6%였다.</p>
+          <div class="card-impl"><b>시사점</b> 유럽 바이어는 이제 포장 증빙 서류를 거래 조건으로 본다. 용기 공급사와 함께 재활용성 자료부터 모아 둬야 한다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.jangup.com/news/articleView.html?idxno=100311" target="_blank">장업신문</a><span class="card-date">2026.10.29</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.jangup.com/news/photo/202610/100317_72221_4721.jpg'), var(--g1)"><span class="card-tag" style="background:var(--c1)">실적</span><h3 class="card-title">아모레퍼시픽그룹, 3분기 영업익 1,301억 24.7%↑…해외·국내 동반 성장</h3></div>
+        <div class="card-body">
+          <p class="card-summary">아모레퍼시픽그룹의 3분기 연결 매출은 1조2,073억 원(+8.9%), 영업이익은 1,301억 원(+24.7%)으로 영업이익률이 9.4%에서 10.8%로 올랐다. 국내 사업의 수익성이 개선된 가운데 북미에서 에스트라·이니스프리가 고성장하며 멀티브랜드 체제가 강화됐고, 일본·인도 등 성장 시장과 더마·헤어케어 카테고리에서도 성과가 확대됐다.</p>
+          <div class="card-impl"><b>시사점</b> 대형사도 성장 축을 더마와 헤어케어로 옮기고 있다. 스킨케어 밖 카테고리의 해외 수요를 함께 볼 때다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.jangup.com/news/articleView.html?idxno=100317" target="_blank">장업신문</a><span class="card-date">2026.10.30</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ② 아이웨어 · 패션잡화 -->
+  <section class="section">
+    <div class="section-head"><span class="dot" style="background:var(--c2)"></span><h2>👓 아이웨어 · 레인부츠 / 패션잡화</h2><span class="count">7</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c2)">
+      <span class="ss-label" style="background:var(--c2)">이번주 이슈 요약</span>
+      <p>스마트 안경은 입력 방식 경쟁으로 넘어갔다. 중국 로키드가 마이크로 LED 컬러 화면을 넣고 <b>시선 추적으로 조작하는 55g 안경</b>을 공개했고, 알리바바도 같은 기능의 제품을 내놨다. 풋웨어에서는 푸마·휠라·아디다스가 인기 스니커즈를 <b>발목·종아리까지 올린 부츠형</b>으로 확장하는 흐름이 뚜렷했고, 세계 신발 생산은 246억 켤레로 제자리인데 <b>미국 러닝화 매출은 13% 늘어</b> 기능성 쪽으로 쏠렸다. 유로모니터 분석에서는 <b>한국 패션 소매 매출의 37%를 인디 브랜드</b>가 차지해 주요국 중 가장 높았다. 유통에서는 신세계가 롯데 센텀시티점을 2,000억 원대에 인수해 부산 해운대 상권을 재편하고, 아웃도어는 경량 다운 물량을 20% 이상 늘렸다. EU 순환경제법은 재생원료 거래와 생산자책임 확대로 패션 공급망 비용 구조를 바꿀 변수로 떠올랐다.</p>
+    </div>
+    <div class="rail">
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://image.zdnet.co.kr/2026/10/31/5c809a9d8e2d9ce5c3da1a3f2c35f885.png'), var(--g2)"><span class="card-tag" style="background:var(--c2)">스마트글래스</span><h3 class="card-title">손 안 대고 '눈짓'으로 켠다…55g AI 안경 등장</h3></div>
+        <div class="card-body">
+          <p class="card-summary">중국 로키드가 마이크로 LED 컬러 디스플레이를 탑재한 첫 스마트 안경 '로키드 컬러'를 공개했다. 무게 55g에 알림 확인·영상 시청·촬영 뷰파인더로 쓰고, 터치 외에 시선 추적으로 손을 쓰지 않고 조작한다. 손목 밴드와 핀치 제스처가 필요한 메타 레이밴 디스플레이와 대비되며, 알리바바도 5,000만 화소 카메라에 시선 추적을 넣은 '큐원 글래스 N1'을 내놨다.</p>
+          <div class="card-impl"><b>시사점</b> 스마트 안경이 일반 안경 무게로 내려왔다. 안경테 디자인과 착용감이 다시 경쟁 요소가 되는 흐름을 봐야 한다.</div>
+        </div>
+        <p class="card-foot"><a href="https://zdnet.co.kr/view/?no=20261031070437" target="_blank">ZDNet Korea</a><span class="card-date">2026.10.31</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.apparelnews.co.kr/upfiles/manage/202610/7080ee944a3eb78fbe1311808f72c33d.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">풋웨어 트렌드</span><h3 class="card-title">스니커즈가 부츠로…풋웨어 시장 '하이탑' 바람</h3></div>
+        <div class="card-body">
+          <p class="card-summary">로우 프로파일 스니커즈의 인기가 가을·겨울 부츠로 번지고 있다. 디올·끌로에·셀린느가 복싱화형 하이탑을 먼저 선보였고, 푸마는 '슬립캣 부츠'와 '스피드캣 웨지', 휠라는 한소희와 협업한 '에샤페 부츠', 아디다스는 '고스트 모토 미드'를 내놨다. 봄·여름에 집중됐던 인기 모델을 겨울 상품으로 확장해 시즌 판매 기회를 넓히려는 전략이다.</p>
+          <div class="card-impl"><b>시사점</b> 인기 모델의 실루엣을 계절 상품으로 늘리는 방식이 통한다. 레인부츠도 기존 디자인의 겨울형 변주를 검토할 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.apparelnews.co.kr/news/news_view/?idx=228587" target="_blank">어패럴뉴스</a><span class="card-date">2026.10.28</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.ktnews.com/news/photo/202610/149802_132863_5440.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">시장 데이터</span><h3 class="card-title">정체된 신발시장, 쿠셔닝·경량화·3D 프린팅이 新동력</h3></div>
+        <div class="card-body">
+          <p class="card-summary">세계 신발산업 연감 2026에 따르면 2025년 세계 신발 생산량은 246억 켤레로 0.1% 늘어나는 데 그쳤지만, 수출액은 1.6% 증가한 1,720억 달러로 평균 단가가 켤레당 11.65달러까지 회복됐다. 서카나 조사에서 올해 상반기 미국 신발 매출은 1% 느는 동안 기능성 신발 6%, 러닝화는 13% 늘었다. 중국의 수출 물량 점유율은 61.2%로 낮아지고 베트남이 11.2%로 올라왔다.</p>
+          <div class="card-impl"><b>시사점</b> 신발은 수량이 아니라 단가와 기능으로 큰다. 착화감과 소재 이야기를 상품 설명 앞쪽에 둘 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.ktnews.com/news/articleView.html?idxno=149802" target="_blank">한국섬유신문</a><span class="card-date">2026.10.30</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.ktnews.com/news/photo/202610/149807_132867_4821.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">시장 데이터</span><h3 class="card-title">무신사가 키운 K인디 패션, 국내 판도 바꾸고 해외 흔든다</h3></div>
+        <div class="card-body">
+          <p class="card-summary">유로모니터의 2025년 패션 소매시장 분석에서 한국은 인디 브랜드 매출 비중이 37%로 중국(23%)·일본·대만(18%)·미국(14%)보다 높았다. 2021~2025년 인디 브랜드의 연평균 성장률은 7.3%로 일반 패션(4.8%)과 럭셔리(4.5%)를 앞섰고, 전체 패션 소매에서 국내 브랜드 비중은 70.1%였다. 무신사는 생산자금 5,300억 원과 80여 브랜드 투자로 이 흐름을 이끌었다.</p>
+          <div class="card-impl"><b>시사점</b> 한국 소비자는 작은 국내 브랜드를 사는 데 익숙하다. 규모보다 정체성이 분명한 브랜드가 유리한 시장이다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.ktnews.com/news/articleView.html?idxno=149807" target="_blank">한국섬유신문</a><span class="card-date">2026.10.31</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.apparelnews.co.kr/upfiles/manage/202610/ee4c7574e69997e101f86755687ffec6.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">유통 채널</span><h3 class="card-title">신세계, 롯데백화점 센텀시티점 인수</h3></div>
+        <div class="card-body">
+          <p class="card-summary">신세계가 자사 센텀시티점과 나란히 붙은 롯데백화점 센텀시티점을 2,000억 원대에 인수한다. 신세계 센텀시티는 지난해 거래액 약 2조3,000억 원대로 단일 점포 3위에 올랐고, 롯데 센텀시티점은 1,300억 원대로 격차가 20배에 달했다. 신세계는 두 공간을 이어 쇼핑·문화·관광을 아우르는 '신세계 타운'을 구상하고, 롯데는 부산본점 전관 리뉴얼에 집중한다. 공정위 기업결합 심사가 남았다.</p>
+          <div class="card-impl"><b>시사점</b> 부산 센텀 상권이 한 회사로 모인다. 부산 팝업·입점은 외국인 매출이 느는 신세계 센텀과 롯데 본점 중심으로 봐야 한다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.apparelnews.co.kr/news/news_view/?idx=228625" target="_blank">어패럴뉴스</a><span class="card-date">2026.10.29</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.ktnews.com/news/photo/202610/149687_132789_5921.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">시즌 수요</span><h3 class="card-title">아웃도어, 경량 다운전쟁 "물량 늘리고 기술 높인다"</h3></div>
+        <div class="card-body">
+          <p class="card-summary">아웃도어 업계가 26FW 경량 다운 물량을 20% 이상 늘렸다. 내셔널지오그래픽은 기획량을 전년 대비 250% 확대했고 몽벨은 공급을 2배 이상, K2는 20% 늘린 16만 장, 아이더는 약 30% 증량했다. 시즌 초반 판매도 앞서 내셔널지오그래픽 경량 패딩은 전년 대비 63%, 몽벨은 50% 이상 늘었고, K2는 8월~10월 5일 매출이 전년의 155%, 판매량은 209%를 기록했다.</p>
+          <div class="card-impl"><b>시사점</b> 겨울 수요가 10월 초에 이미 움직였다. 방한·방수 잡화도 11월이 아니라 10월에 노출을 시작하는 편이 낫다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.ktnews.com/news/articleView.html?idxno=149687" target="_blank">한국섬유신문</a><span class="card-date">2026.10.27</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.ktnews.com/news/thumbnail/202610/149805_132866_4747_v150.jpg'), var(--g2)"><span class="card-tag" style="background:var(--c2)">해외 규제</span><h3 class="card-title">EU 순환경제법, 글로벌 패션 공급망 재편한다</h3></div>
+        <div class="card-body">
+          <p class="card-summary">EU가 추진하는 순환경제법(CEA)은 폐의류에서 나온 재생원료가 역내에서 거래되도록 제도를 정비하고 생산자책임을 넓힌다. 2024년 EU 경제의 재활용 원료 비중은 12.2%인데 2030년 목표는 24%이고, 2022년 섬유 폐기물 694만 톤 중 약 85%는 분리 수거되지 않았다. 패션기업의 경쟁력은 재활용 가능한 설계, 원료 추적성, 회수·재활용 역량에 따라 갈릴 전망이다.</p>
+          <div class="card-impl"><b>시사점</b> 유럽은 팔고 끝이 아니라 회수까지 책임을 묻는다. 유럽 판매를 늘리려면 소재 추적 자료를 먼저 갖춰야 한다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.ktnews.com/news/articleView.html?idxno=149805" target="_blank">한국섬유신문</a><span class="card-date">2026.10.30</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ③ 뷰티 디바이스 -->
+  <section class="section">
+    <div class="section-head"><span class="dot" style="background:var(--c3)"></span><h2>💫 뷰티 디바이스 (홈뷰티 기기)</h2><span class="count">2</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c3)">
+      <span class="ss-label" style="background:var(--c3)">이번주 이슈 요약</span>
+      <p>에이피알의 3분기 잠정 실적이 나왔다. 매출은 7,731억 원으로 전년 동기의 두 배(+100.3%)가 됐고 해외 비중은 94%였지만, <b>영업이익률은 24.6%에서 20.8%로 3.86%p 내려갔고 직전 분기보다 영업이익이 15.7% 줄었다</b>. 메디큐브는 타겟 1,500곳·월마트 3,000곳에 이어 10월 코스트코 400곳에 들어갔는데, 대형 유통망 확장이 이익으로 이어지는지가 다음 시험대로 꼽혔다. LG생활건강의 <b>LG 프라엘은 피부과 전문의로 구성한 '피부과학 자문단'</b>을 발족해 기기 작동 원리와 피부 작용 기전을 제품 기획 단계부터 검증하기로 했다.</p>
+    </div>
+    <div class="rail">
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.ktnews.com/news/thumbnail/202610/149800_132860_4345_v150.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">실적·수익성</span><h3 class="card-title">에이피알, 매출 두 배 뛰었지만 수익성은 뒷걸음</h3></div>
+        <div class="card-body">
+          <p class="card-summary">에이피알의 3분기 매출은 7,731억 원(+100.3%), 영업이익은 1,606억 원(+68.9%)이었다. 영업이익률은 전년 동기 24.64%에서 20.78%로 떨어졌고, 2분기와 비교하면 매출이 0.7% 느는 동안 영업이익은 15.7% 줄었다. 해외 매출은 135% 늘어 전체의 94%를 차지했고, 메디큐브는 타겟·월마트에 이어 10월 코스트코 약 400개 지점에 입점했다. 1~9월 누적 매출은 2조1,340억 원이다.</p>
+          <div class="card-impl"><b>시사점</b> 대형 유통망 입점은 매출을 키우지만 판촉·물류비가 따라온다. 채널을 늘릴 때는 채널별 이익률을 같이 봐야 한다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.ktnews.com/news/articleView.html?idxno=149800" target="_blank">한국섬유신문</a><span class="card-date">2026.10.30</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20261044/art_17933266087656_26304d.jpg'), var(--g3)"><span class="card-tag" style="background:var(--c3)">경쟁사 동향</span><h3 class="card-title">LG 프라엘, 피부과학 자문단 발족…뷰티테크 경쟁력 강화</h3></div>
+        <div class="card-body">
+          <p class="card-summary">LG생활건강의 홈뷰티 디바이스 브랜드 LG 프라엘이 평균 10년 이상 경력의 피부과 의료진과 연구원으로 '피부과학 자문단'을 꾸리고 10월 22일 첫 연구회를 열었다. 기기 작동 원리와 피부 작용 기전을 분석해 제품 기획 초기부터 피부과학 근거를 넣겠다는 계획이다. 프라엘은 최근 갈바닉 부스터·써마샷 얼티밋·멜라빔 토닝 등 신제품을 잇달아 내며 제품군을 넓히고 있다.</p>
+          <div class="card-impl"><b>시사점</b> 대형사가 '의사가 검증한 기기'를 내세우기 시작했다. 자사 기기도 효능 근거를 누가 확인했는지 보여 줄 필요가 있다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosmorning.com/news/article.html?no=53832" target="_blank">코스모닝</a><span class="card-date">2026.10.30</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ④ 미디어커머스 공통 -->
+  <section class="section">
+    <div class="section-head"><span class="dot" style="background:var(--c4)"></span><h2>🛒 미디어커머스 공통</h2><span class="count">7</span><span class="hint">← 좌우로 넘겨보세요 →</span></div>
+    <div class="section-summary" style="border-left-color:var(--c4)">
+      <span class="ss-label" style="background:var(--c4)">이번주 이슈 요약</span>
+      <p>공정위가 10월 27~28일 이틀에 걸쳐 <b>쿠팡의 '배달앱 끼워팔기' 혐의</b>를 심의했다. 통합회원·앱 연결·와우멤버십으로 쇼핑 이용자를 쿠팡이츠로 유도했는지가 쟁점이고, 쿠팡이츠 주문액 점유율은 2023년 10%대에서 2024년 30%대로 올랐다. 대한상의 조사에서 <b>4분기 소매유통 경기전망지수는 88</b>로 3분기(92)보다 내려갔고, 가성비·소량 목적형 구매가 늘었다는 답이 80% 안팎이었다. 네이버는 3분기 매출이 12% 늘어도 AI 인프라와 오프라인 결제 투자로 영업이익은 13% 줄 것으로 전망됐고, 멤버십 회원을 위한 첫 오프라인 축제 '넾페스타'를 성수에서 열었다. 배민은 정답이 매번 달라지는 AI 검색을 어떻게 검증했는지 공개했다. 무신사는 11월 11일 성수에 <b>400평·700개 브랜드 뷰티 매장</b>을 열고, 중국 티몰 뷰티는 광군제를 앞둔 10월 TOP10 판매량이 전월보다 460% 뛰었다.</p>
+    </div>
+    <div class="rail">
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://i3n.news1.kr/system/photos/2026/10/9/8151162/high.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼 규제</span><h3 class="card-title">공정위, 쿠팡 '배달앱 끼워팔기' 이틀간 심의…멤버십 결합 위법성 쟁점</h3></div>
+        <div class="card-body">
+          <p class="card-summary">공정위 전원회의가 온라인쇼핑과 음식배달을 하나의 유료 멤버십으로 묶은 쿠팡의 사업 방식을 이틀간 심의했다. 통합회원 가입, 쇼핑 앱 안의 쿠팡이츠 연결, 와우멤버십 혜택으로 배달앱 이용을 사실상 강제해 쇼핑의 영향력을 배달로 옮겼는지가 쟁점이다. 쿠팡이츠 주문액 점유율은 2023년 10%대에서 2024년 30%대로 올랐고, 국감에서는 할인 제한과 수수료 부담도 지적됐다.</p>
+          <div class="card-impl"><b>시사점</b> 멤버십 혜택으로 다른 서비스를 묶는 방식에 제동이 걸릴 수 있다. 플랫폼 번들 혜택에 기댄 판촉은 변동에 대비해야 한다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.news1.kr/economy/trend/6334717" target="_blank">뉴스1</a><span class="card-date">2026.10.28</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosinkorea.com/data/photos/20261044/art_17930808997869_b499e9.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">소비 전망</span><h3 class="card-title">4분기 소매유통업 경기전망 '주춤'…선택적·절약형 소비 확산</h3></div>
+        <div class="card-body">
+          <p class="card-summary">대한상의가 500개 소매유통업체를 조사한 4분기 경기전망지수(RBSI)는 88로 3분기 92보다 낮아졌다. 악화를 예상한 기업의 70%는 신중해진 가계 씀씀이를 꼽았고, 가성비 상품 선호가 비슷하거나 늘었다는 답이 78.4%, 소량·목적형 구매가 유지되거나 늘었다는 답이 83.6%였다. 업태별로는 백화점(130)이 가장 높았고 온라인쇼핑은 상승, 편의점·슈퍼는 약세였다.</p>
+          <div class="card-impl"><b>시사점</b> 소비자가 필요한 것만 골라 담는다. 묶음 할인보다 용도가 분명한 단품 제안이 연말에 더 잘 먹힐 수 있다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosinkorea.com/news/article.html?no=58599" target="_blank">코스인코리아</a><span class="card-date">2026.10.27</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://cdn.sisajournal-e.com/news/thumbnail/202610/424697_241599_4414_v150.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">플랫폼 실적</span><h3 class="card-title">외형 키운 네이버, 비용 낮춘 카카오…3분기 수익성 갈리나</h3></div>
+        <div class="card-body">
+          <p class="card-summary">에프앤가이드 컨센서스 기준 네이버의 3분기 매출은 3조5,143억 원(+12%)이지만 영업이익은 4,976억 원(-13%)으로 예상된다. 광고·커머스는 성장해도 AI 인프라용 GPU 감가상각과 오프라인 N페이 커넥트 단말기 보급 비용이 늘어서다. 카카오는 매출 2조420억 원(-2%)에 영업이익 2,483억 원(+19%)으로 비용 관리 효과가 전망된다. 플랫폼 매출 성장률은 2분기보다 3.3%p 낮아질 것으로 봤다.</p>
+          <div class="card-impl"><b>시사점</b> 네이버가 오프라인 결제와 AI에 돈을 쏟고 있다. 네이버페이 오프라인 연동 혜택이 늘어날 때를 대비해 둘 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.sisajournal-e.com/news/articleView.html?idxno=424697" target="_blank">시사저널e</a><span class="card-date">2026.10.31</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://cdn.byline.network/wp-content/uploads/2026/10/20261030_naver_5.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">멤버십·오프라인</span><h3 class="card-title">얼굴로 입장하고 디지털 지갑에 스탬프…네이버, 멤버십을 오프라인으로</h3></div>
+        <div class="card-body">
+          <p class="card-summary">네이버가 10월 30일부터 11월 1일까지 성수동에서 네이버플러스 멤버십 회원을 위한 첫 오프라인 축제 '넾페스타'를 열었다. 등록한 얼굴로 입장하는 페이스사인, 브랜드 '알림받기'를 설정해야 참여하는 부스 이벤트, QR로 모은 NFT 스탬프를 담는 Npay 월렛, 결제 단말기 Npay 커넥트까지 자사 서비스를 행사 곳곳에 넣었다. 이어 네이버아레나 등으로 넓힐 계획이다.</p>
+          <div class="card-impl"><b>시사점</b> 플랫폼이 브랜드 알림받기를 참여 조건으로 걸어 준다. 네이버 브랜드스토어 알림 고객을 늘릴 기회로 볼 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://byline.network/2026/11/30_29182773-2/" target="_blank">바이라인네트워크</a><span class="card-date">2026.11.01</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://cdn.byline.network/wp-content/uploads/2026/10/20261028_baemin_2.jpeg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">AI 커머스</span><h3 class="card-title">"답이 매번 다르네"…배민 AI 검색 팀의 고민</h3></div>
+        <div class="card-body">
+          <p class="card-summary">배달의민족이 10월 20일 일부 이용자에게 연 AI 검색은 "비 오는데 뭐 먹지" 같은 모호한 요청을 대화로 좁히고, 최소주문금액 같은 복잡한 조건은 대신 찾아 준다. 우아콘2026에서 공개한 개발 과정의 핵심은 답이 확률에 따라 달라지는 기능을 어떻게 검증하느냐였다. 배민은 AI가 할 일과 코드가 할 일을 나누고, 안전과 품질을 따로 평가하는 방식으로 출시 기준을 세웠다.</p>
+          <div class="card-impl"><b>시사점</b> 커머스 검색이 키워드에서 대화로 바뀌고 있다. 상품 설명을 상황과 고민 중심 문장으로 써 두는 편이 유리하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://byline.network/2026/10/28_219288733/" target="_blank">바이라인네트워크</a><span class="card-date">2026.10.30</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://www.cosmorning.com/data/photos/20261044/art_17933399323783_078d97.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">오프라인 확장</span><h3 class="card-title">"무진장 뷰티 많은 곳"…무신사, 성수에 400평 뷰티 성지 연다</h3></div>
+        <div class="card-body">
+          <p class="card-summary">무신사가 11월 11일 성수동 연무장길에 지상 1~2층, 전용면적 약 400평의 '무신사 뷰티 성수'를 연다. 9월 홍대점에 이은 두 번째 뷰티 단독 매장으로 약 700개 브랜드, 1만여 개 제품을 판다. 신진 브랜드를 모은 '넥스트 뷰티'존과 15평 규모 브랜드 단독 팝업존, 약사가 상담하는 '뷰티온누리약국'을 두고, 홍대점 판매 데이터로 고른 약 100개 더마 브랜드를 피부 고민별로 나눠 진열한다.</p>
+          <div class="card-impl"><b>시사점</b> 무신사가 인디 뷰티의 오프라인 통로를 하나 더 만든다. 성수점 팝업존과 더모존 입점 조건을 알아볼 만하다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.cosmorning.com/news/article.html?no=53833" target="_blank">코스모닝</a><span class="card-date">2026.10.30</span></p>
+      </article>
+      <article class="card">
+        <div class="card-img" style="background-image:url('https://cdn.thebk.co.kr/news/photo/202611/312563_83088_180.jpg'), var(--g4)"><span class="card-tag" style="background:var(--c4)">중국 플랫폼</span><h3 class="card-title">10월 티몰 뷰티시장 판매량 급증…광군제 특수 본격화</h3></div>
+        <div class="card-body">
+          <p class="card-summary">8~9월 둔화했던 중국 티몰 뷰티 판매가 10월 반등했다. 뷰티경제가 8개 품목 TOP10 판매량을 집계한 결과 9월 126만 개에서 10월 706만 개로 460.3% 늘었고, 쿠션(+800%)·토너(+792%)·에센스(+571%) 순으로 증가가 컸다. 11월 11일 광군제를 앞둔 예약판매 효과다. 마스크팩은 라로슈포제가 50만 개로 1위였고, 한국 브랜드는 베이스·쿠션 부문에서만 TOP10에 들었다.</p>
+          <div class="card-impl"><b>시사점</b> 중국은 광군제 한 달 전부터 예약판매로 수요를 당긴다. 중국 채널이 있다면 10월 사전 물량 배분이 성패를 가른다.</div>
+        </div>
+        <p class="card-foot"><a href="https://www.thebk.co.kr/news/articleView.html?idxno=312563" target="_blank">뷰티경제</a><span class="card-date">2026.11.01</span></p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  ⓒ 2026 미디어커머스 업계 동향 리포트 &nbsp;|&nbsp; 생성: Claude (claude-fable-5-1) &nbsp;|&nbsp; 수집 범위: 2026.10.26 ~ 11.01 &nbsp;|&nbsp; 카드뉴스 레이아웃
+</footer>
+
+<script>/* 주차 이동 바: 루트/리포트 폴더 어디서 열려도 weeknav.js 를 찾도록 경로 계산 */
+(function(){var s=document.createElement('script');s.src=(decodeURIComponent(location.pathname).indexOf('/리포트/')>=0?'../':'')+'weeknav.js';document.head.appendChild(s);})();</script>
+</body>
+</html>
