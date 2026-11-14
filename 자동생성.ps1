@@ -174,7 +174,12 @@ Log "Claude(headless) 실행 시작... (리서치·작성·검증까지 수 분 
 # headless 실행: -p(print) 로 비대화형. 무인이라 도구 승인 없이 끝까지 진행되도록 권한 우회.
 # ※ 이 스크립트는 발행(push)을 하지 않으므로 영향 범위는 로컬 파일 쓰기/웹 조회로 한정됨.
 # 빈 stdin 을 파이프해 'no stdin data' 경고/3초 대기를 방지.
-"" | & claude -p $prompt --dangerously-skip-permissions 2>&1 | Tee-Object -FilePath $logFile -Append
+# ※ claude 가 stderr 로 경고(로그인 만료 예고 등)를 내면 PS 5.1 + 2>&1 + EAP=Stop 에서
+#   종료 오류로 승격돼 스크립트가 즉사한다(11/9 실패 원인). 이 구간만 Continue 로 낮춘다.
+$prevEAP = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+"" | & claude -p $prompt --dangerously-skip-permissions 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath $logFile -Append
+$ErrorActionPreference = $prevEAP
 
 Log "Claude 실행 종료."
 
